@@ -1,7 +1,7 @@
 #pragma once
 
 // 魚の最大数
-const int FISH_MAX_NUM = 20;
+const int FISH_MAX_NUM = 4;
 
 // 魚の画像パス
 const char FISH_PATH[FISH_MAX_NUM][256] = { "" };
@@ -19,7 +19,9 @@ private:
 	int handle[FISH_MAX_NUM]; // 魚画像ハンドル
 	float _X[FISH_MAX_NUM], _Y[FISH_MAX_NUM]; // 現在の座標
 	float _SaveX[FISH_MAX_NUM], _SaveY[FISH_MAX_NUM]; // 移動後の座標
-	bool isLeft[FISH_MAX_NUM]; // 右を向いているかどうか
+
+	bool isLeft[FISH_MAX_NUM]; // 左を向いているかどうか
+	bool isActive[FISH_MAX_NUM]; //	生きているかどうか
 
 public:
 
@@ -54,6 +56,9 @@ public:
 
 	// 通常処理
 	void Step();
+
+	// 画像描画
+	void Draw();
 
 	// 終了処理
 	void Fin();
