@@ -33,7 +33,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_TITLE;		//シーンID
 
 	//-----------------------------------------
-
 	//ゲームメインループ
 	while (ProcessMessage() != -1)
 	{
