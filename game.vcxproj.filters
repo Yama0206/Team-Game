@@ -16,23 +16,96 @@
     <Filter Include="ソース ファイル\Scene">
       <UniqueIdentifier>{b266cd45-d09b-4019-8cb8-2007de5ff3c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Animation">
+      <UniqueIdentifier>{f03fc7b2-383a-4034-a98e-d98eaa098b7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Collision">
+      <UniqueIdentifier>{bdf9cdf3-1182-43d2-896d-3484792404a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect">
+      <UniqueIdentifier>{6b6d212e-fa5a-433a-a08a-496cc5bfe077}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\FrameRate">
+      <UniqueIdentifier>{302550da-dfda-49cd-8f4b-62ed8fd1c617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Input">
+      <UniqueIdentifier>{0087de4c-4d34-48dc-9963-73228719cecb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MathPlus">
+      <UniqueIdentifier>{62121c30-22c9-4018-93bc-b249b745df24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Mouse">
+      <UniqueIdentifier>{f746e961-11ad-4b5a-930f-93b5f88b16e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Sound">
+      <UniqueIdentifier>{b87d8f4c-8d83-4de7-8585-aa0eb4662dc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Fish">
+      <UniqueIdentifier>{251fccab-ca6b-4418-9b38-78bcb6d89b44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Fish.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="src\Animation\Animation.cpp">
+      <Filter>ソース ファイル\Animation</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Fish.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
+    <ClCompile Include="src\Collision\Collision.cpp">
+      <Filter>ソース ファイル\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Effect\Effect.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FrameRate\FrameRate.cpp">
+      <Filter>ソース ファイル\FrameRate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input\Input.cpp">
+      <Filter>ソース ファイル\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MathPlus\MathPlus.cpp">
+      <Filter>ソース ファイル\MathPlus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mouse\Mouse.cpp">
+      <Filter>ソース ファイル\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sound\Sound.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fish\Fish.cpp">
+      <Filter>ソース ファイル\Fish</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Scene\Scene.h">
       <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Animation\Animation.h">
+      <Filter>ソース ファイル\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Collision\Collision.h">
+      <Filter>ソース ファイル\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Effect\Effect.h">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FrameRate\FrameRate.h">
+      <Filter>ソース ファイル\FrameRate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Input\Input.h">
+      <Filter>ソース ファイル\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MathPlus\MathPlus.h">
+      <Filter>ソース ファイル\MathPlus</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mouse\Mouse.h">
+      <Filter>ソース ファイル\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sound\Sound.h">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fish\Fish.h">
+      <Filter>ソース ファイル\Fish</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

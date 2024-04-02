@@ -19,11 +19,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Fish.cpp" />
+    <ClCompile Include="src\Animation\Animation.cpp" />
+    <ClCompile Include="src\Collision\Collision.cpp" />
+    <ClCompile Include="src\Effect\Effect.cpp" />
+    <ClCompile Include="src\Fish\Fish.cpp" />
+    <ClCompile Include="src\FrameRate\FrameRate.cpp" />
+    <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MathPlus\MathPlus.cpp" />
+    <ClCompile Include="src\Mouse\Mouse.cpp" />
+    <ClCompile Include="src\Sound\Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Animation\Animation.h" />
+    <ClInclude Include="src\Collision\Collision.h" />
+    <ClInclude Include="src\Effect\Effect.h" />
+    <ClInclude Include="src\Fish\Fish.h" />
+    <ClInclude Include="src\FrameRate\FrameRate.h" />
+    <ClInclude Include="src\Input\Input.h" />
+    <ClInclude Include="src\MathPlus\MathPlus.h" />
+    <ClInclude Include="src\Mouse\Mouse.h" />
     <ClInclude Include="src\Scene\Scene.h" />
+    <ClInclude Include="src\Sound\Sound.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
