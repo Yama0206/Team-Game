@@ -28,6 +28,8 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MathPlus\MathPlus.cpp" />
     <ClCompile Include="src\Mouse\Mouse.cpp" />
+    <ClCompile Include="src\Scene\Title\Title.cpp" />
+    <ClCompile Include="src\Player\Player.cpp" />
     <ClCompile Include="src\Sound\Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -39,7 +41,9 @@
     <ClInclude Include="src\Input\Input.h" />
     <ClInclude Include="src\MathPlus\MathPlus.h" />
     <ClInclude Include="src\Mouse\Mouse.h" />
+    <ClInclude Include="src\Player\Player.h" />
     <ClInclude Include="src\Scene\Scene.h" />
+    <ClInclude Include="src\Scene\Title\Title.h" />
     <ClInclude Include="src\Sound\Sound.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

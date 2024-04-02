@@ -1,53 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="ソース ファイル\Scene">
-      <UniqueIdentifier>{b266cd45-d09b-4019-8cb8-2007de5ff3c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Animation">
-      <UniqueIdentifier>{f03fc7b2-383a-4034-a98e-d98eaa098b7b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Collision">
-      <UniqueIdentifier>{bdf9cdf3-1182-43d2-896d-3484792404a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Effect">
-      <UniqueIdentifier>{6b6d212e-fa5a-433a-a08a-496cc5bfe077}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\FrameRate">
-      <UniqueIdentifier>{302550da-dfda-49cd-8f4b-62ed8fd1c617}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Input">
-      <UniqueIdentifier>{0087de4c-4d34-48dc-9963-73228719cecb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\MathPlus">
-      <UniqueIdentifier>{62121c30-22c9-4018-93bc-b249b745df24}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Mouse">
-      <UniqueIdentifier>{f746e961-11ad-4b5a-930f-93b5f88b16e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Sound">
-      <UniqueIdentifier>{b87d8f4c-8d83-4de7-8585-aa0eb4662dc2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Fish">
-      <UniqueIdentifier>{251fccab-ca6b-4418-9b38-78bcb6d89b44}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="src\Animation\Animation.cpp">
       <Filter>ソース ファイル\Animation</Filter>
     </ClCompile>
@@ -56,6 +9,9 @@
     </ClCompile>
     <ClCompile Include="src\Effect\Effect.cpp">
       <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fish\Fish.cpp">
+      <Filter>ソース ファイル\Fish</Filter>
     </ClCompile>
     <ClCompile Include="src\FrameRate\FrameRate.cpp">
       <Filter>ソース ファイル\FrameRate</Filter>
@@ -69,17 +25,20 @@
     <ClCompile Include="src\Mouse\Mouse.cpp">
       <Filter>ソース ファイル\Mouse</Filter>
     </ClCompile>
+    <ClCompile Include="src\Player\Player.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
     <ClCompile Include="src\Sound\Sound.cpp">
       <Filter>ソース ファイル\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="src\Fish\Fish.cpp">
-      <Filter>ソース ファイル\Fish</Filter>
+    <ClCompile Include="src\Scene\Title\Title.cpp">
+      <Filter>ソース ファイル\Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Scene\Scene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="src\Animation\Animation.h">
       <Filter>ソース ファイル\Animation</Filter>
     </ClInclude>
@@ -88,6 +47,9 @@
     </ClInclude>
     <ClInclude Include="src\Effect\Effect.h">
       <Filter>ソース ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fish\Fish.h">
+      <Filter>ソース ファイル\Fish</Filter>
     </ClInclude>
     <ClInclude Include="src\FrameRate\FrameRate.h">
       <Filter>ソース ファイル\FrameRate</Filter>
@@ -101,11 +63,58 @@
     <ClInclude Include="src\Mouse\Mouse.h">
       <Filter>ソース ファイル\Mouse</Filter>
     </ClInclude>
+    <ClInclude Include="src\Player\Player.h">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene\Scene.h">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\Sound\Sound.h">
       <Filter>ソース ファイル\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fish\Fish.h">
-      <Filter>ソース ファイル\Fish</Filter>
+    <ClInclude Include="src\Scene\Title\Title.h">
+      <Filter>ソース ファイル\Scene\Title</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{afb16405-6aed-4d75-a9f6-2ef194317ff7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Animation">
+      <UniqueIdentifier>{bc47468a-d701-4b0c-9a7a-4084b30b66e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Collision">
+      <UniqueIdentifier>{f0007dfe-4cbb-4653-a43f-8faed7627e43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Effect">
+      <UniqueIdentifier>{1f970159-2c7f-4edd-8858-c53e060f6c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Fish">
+      <UniqueIdentifier>{41782757-ea2a-4aa9-88c3-2d6a6f931f52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\FrameRate">
+      <UniqueIdentifier>{18ae28bf-2019-4790-8bdd-f36b65be9953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Input">
+      <UniqueIdentifier>{ab9d4e32-2618-4413-87ea-1c583f3c08eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MathPlus">
+      <UniqueIdentifier>{f279ae0f-c0c0-4901-84a2-0f123a06e8dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Mouse">
+      <UniqueIdentifier>{ed8852ad-22ea-4eed-86a6-64d61d64f04e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Player">
+      <UniqueIdentifier>{a8c3b33d-b349-4eb1-bc14-cebdf2cb55a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene">
+      <UniqueIdentifier>{db75631b-5e64-4946-8409-cbfcb493385b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Sound">
+      <UniqueIdentifier>{208f75a1-6687-4854-8656-02f887b524e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Title">
+      <UniqueIdentifier>{836b17c2-aa6d-4918-ba35-0ab3761a2533}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

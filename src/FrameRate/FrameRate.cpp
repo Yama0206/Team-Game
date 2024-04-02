@@ -1,5 +1,6 @@
 #include"DxLib.h"
 #include"FrameRate.h"
+#include"../Scene/Scene.h"
 
 //フレームレート情報
 struct FrameRateInfo
@@ -76,5 +77,5 @@ void DrawFPS()
 {
 	SetFontSize(20);
 	unsigned int color = GetColor(255, 30, 30);
-	DrawFormatString(640 -120, 480 -20, color, "FPS[%.2f]", frameRateInfo.fps);
+	DrawFormatString(SCREEN_SIZE_X -120, SCREEN_SIZE_Y -20, color, "FPS[%.2f]", frameRateInfo.fps);
 }
