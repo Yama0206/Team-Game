@@ -31,7 +31,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//一番最初に１回だけやる処理をここに書く
 
 	//-----------------------------------------
-
 	//ゲームメインループ
 	while (ProcessMessage() != -1)
 	{
