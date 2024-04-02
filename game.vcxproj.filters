@@ -43,6 +43,9 @@
     <Filter Include="ソース ファイル\Fish">
       <UniqueIdentifier>{251fccab-ca6b-4418-9b38-78bcb6d89b44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Play">
+      <UniqueIdentifier>{2eaacaa1-b3ba-474e-8ff8-a889b0685464}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -75,6 +78,9 @@
     <ClCompile Include="src\Fish\Fish.cpp">
       <Filter>ソース ファイル\Fish</Filter>
     </ClCompile>
+    <ClCompile Include="src\Play\Play.cpp">
+      <Filter>ソース ファイル\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Scene\Scene.h">
@@ -106,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="src\Fish\Fish.h">
       <Filter>ソース ファイル\Fish</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Play\Play.h">
+      <Filter>ソース ファイル\Play</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
