@@ -30,7 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//-----------------------------------------
 	//一番最初に１回だけやる処理をここに書く
-	SCENE_ID g_CurrentSceneID;		//シーンID
+	SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_TITLE;		//シーンID
 
 	//-----------------------------------------
 
