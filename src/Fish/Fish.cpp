@@ -1,4 +1,6 @@
 #include "Fish.h"
+#include "../Scene/Scene.h"
+
 #include "DxLib.h"
 
 Fish::Fish()
@@ -69,6 +71,13 @@ void Fish::Step()
 		else {
 			_SaveX[FishIndex] += FISH_SPEED;
 		}
+
+		if (_SaveX[FishIndex] > SCREEN_SIZE_X + FISH_X_SIZE / 2) {
+		}
+		else if (_SaveX[FishIndex] < -FISH_X_SIZE / 2) {
+
+		}
+
 	}
 }
 
