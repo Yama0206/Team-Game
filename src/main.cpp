@@ -1,10 +1,11 @@
 //ウィンドウを表示するプログラム（ひな形）
 
-#include "DxLib.h"	//DXライブラリのインクルード
+#include "DxLib.h"					//DXライブラリのインクルード
 #include "FrameRate/FrameRate.h"	//フレームレート
-#include "Input/Input.h"	//入力機能
-#include "Scene/Scene.h"
-#include "Scene/Title/Title.h"
+#include "Input/Input.h"			//入力機能
+#include "Scene/Scene.h"			//シーン関連
+#include "Scene/Title/Title.h"		//タイトル
+#include "Scene/Play/Play.h"
 
 // Win32アプリケーションは WinMain関数 から始まる
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
@@ -30,6 +31,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	//-----------------------------------------
 	//一番最初に１回だけやる処理をここに書く
 	g_CurrentSceneID = SCENE_ID_INIT_TITLE;		//シーンID
+
+	//シーンクラス宣言
+	Play play;		//プレイシーン
 
 	//入力制御初期化
 	Input::Init();

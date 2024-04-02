@@ -37,6 +37,9 @@
     <ClCompile Include="src\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scene\Play\Play.cpp">
+      <Filter>ソース ファイル\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Animation\Animation.h">
@@ -74,6 +77,9 @@
     </ClInclude>
     <ClInclude Include="src\Scene\Title\Title.h">
       <Filter>ソース ファイル\Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene\Play\Play.h">
+      <Filter>ソース ファイル\Play</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +121,9 @@
     </Filter>
     <Filter Include="ソース ファイル\Scene\Title">
       <UniqueIdentifier>{836b17c2-aa6d-4918-ba35-0ab3761a2533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Play">
+      <UniqueIdentifier>{60f419a9-1c3e-4e45-9263-59254d814f44}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

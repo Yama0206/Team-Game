@@ -3,7 +3,7 @@
 #include "../Input/Input.h"
 
 //プレイヤーの初期化
-void Player::InitPlayer()
+void Player::Init()
 {
 	//プレイヤーの座標の初期化
 	posX = 10;
@@ -14,25 +14,25 @@ void Player::InitPlayer()
 }
 
 //プレイヤーの通常処理
-void Player::StepPlayer()
+void Player::Step()
 {
 
 }
 
 //プレイヤーの描画処理
-void Player::DrawPlayer()
+void Player::Draw()
 {
 	DrawFormatString(40, 40, GetColor(255, 0, 0), "%d, %d", posX, posY);
 }
 
 //プレイヤーの終了処理
-void Player::FinPlayer()
+void Player::Fin()
 {
 
 }
 
 //プレイヤーの操作処理
-void Player::PlayerOperation()
+void Player::Operation()
 {
 
 }

@@ -15,17 +15,17 @@ public:
 	float GetPlayerPosY() { return posY; }
 
 	//プレイヤーの初期化
-	void InitPlayer();
+	void Init();
 
 	//プレイヤーの通常処理
-	void StepPlayer();
+	void Step();
 
 	//プレイヤー関連の描画処理
-	void DrawPlayer();
+	void Draw();
 
 	//プレイヤーの終了処理
-	void FinPlayer();
+	void Fin();
 
 	//プレイヤー操作処理
-	void PlayerOperation();
+	void Operation();
 };
