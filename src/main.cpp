@@ -1,7 +1,12 @@
 //ウィンドウを表示するプログラム（ひな形）
 
 #include "DxLib.h"	//DXライブラリのインクルード
+<<<<<<< HEAD
+#include "FrameRate/FrameRate.h"	//フレームレート
+#include "Input/Input.h"	//入力機能
+=======
 #include "Scene/Scene.h"	
+>>>>>>> 50cfde0d2cb620eb81f871ee6c4ed0e62cfb00bf
 
 // define
 #define	SCREEN_SIZE_X	640	// X方向の画面サイズを指定
@@ -12,7 +17,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 {
 
 	//ウィンドウの名前を変える
-	SetMainWindowText("ﾃｷﾄｰ");
+	SetMainWindowText("釣りキング");
 
 	//ウィンドウの状態を設定する
 	ChangeWindowMode(true);
@@ -21,7 +26,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, 32);
 
 	//DXライブラリの初期化
-	if (DxLib_Init() == -1) {
+	if (DxLib_Init() == -1) 
+	{
 		return -1;
 	}
 
@@ -32,15 +38,46 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//一番最初に１回だけやる処理をここに書く
 	SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_TITLE;		//シーンID
 
+	//入力制御初期化
+	Input::Init();
+
 	//-----------------------------------------
 	//ゲームメインループ
 	while (ProcessMessage() != -1)
 	{
-		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
+		//フレームレート管理
+		if (FPS())
 		{
-			//エスケープキーが押されたら終了
-			break;
+			if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
+			{
+				//エスケープキーが押されたら終了
+				break;
+			}
+
+			//画面に表示されたものを初期化
+			ClearDrawScreen();
+
+			//-----------------------------------------
+			//ここからゲームの本体を書くことになる
+			//-----------------------------------------
+
+
+
+
+			//-----------------------------------------
+			//ループの終わりに
+
+			//FPS計算
+			CalcFPS();
+
+			//FPS表示（デバック用）
+			DrawFPS();
+
+			//フリップ関数
+			ScreenFlip();
 		}
+<<<<<<< HEAD
+=======
 
 		//画面に表示されたものを初期化
 		ClearDrawScreen();
@@ -101,6 +138,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		//フリップ関数
 		ScreenFlip();
 
+>>>>>>> 50cfde0d2cb620eb81f871ee6c4ed0e62cfb00bf
 	}
 
 	//-----------------------------------------
