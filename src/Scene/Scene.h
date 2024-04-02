@@ -1,7 +1,8 @@
 #pragma once
 
-#define WINDOW_WIDTH  (1280)	//ウィンドウの横の長さ
-#define WINDOW_HEIGHT  (720)		//ウィンドウの縦の長さ
+// define
+#define	SCREEN_SIZE_X	800	// X方向の画面サイズを指定
+#define	SCREEN_SIZE_Y	600	// Y方向の画面サイズを指定
 
 enum SCENE_ID
 {

@@ -5,10 +5,6 @@
 #include "Input/Input.h"	//入力機能
 #include "Scene/Scene.h"	
 
-// define
-#define	SCREEN_SIZE_X	640	// X方向の画面サイズを指定
-#define	SCREEN_SIZE_Y	480	// Y方向の画面サイズを指定
-
 // Win32アプリケーションは WinMain関数 から始まる
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
