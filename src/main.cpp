@@ -3,7 +3,8 @@
 #include "DxLib.h"	//DXライブラリのインクルード
 #include "FrameRate/FrameRate.h"	//フレームレート
 #include "Input/Input.h"	//入力機能
-#include "Scene/Scene.h"	
+#include "Scene/Scene.h"
+#include "Scene/Title/Title.h"
 
 // Win32アプリケーションは WinMain関数 から始まる
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -29,7 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//-----------------------------------------
 	//一番最初に１回だけやる処理をここに書く
-	SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_TITLE;		//シーンID
+	g_CurrentSceneID = SCENE_ID_INIT_TITLE;		//シーンID
 
 	//入力制御初期化
 	Input::Init();
@@ -50,6 +51,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			//画面に表示されたものを初期化
 			ClearDrawScreen();
 
+			//入力処理通常処理
+			Input::Step();
+
 			//-----------------------------------------
 			//ここからゲームの本体を書くことになる
 			//-----------------------------------------
@@ -61,13 +65,27 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				//タイトルシーン初期化
 			case SCENE_ID_INIT_TITLE:
 
+				//初期化
+				TitleInit();
+
 				break;
+
 				//タイトルシーン通常処理
 			case SCENE_ID_LOOP_TITLE:
 
+				//通常処理
+				TitleStep();
+
+				//描画
+				TitleDraw();
+
 				break;
+
 				//タイトルシーン終了処理
 			case SCENE_ID_FIN_TITLE:
+
+				//終了処理
+				TitleFin();
 
 				break;
 
