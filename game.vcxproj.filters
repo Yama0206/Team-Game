@@ -43,8 +43,11 @@
     <Filter Include="ソース ファイル\Fish">
       <UniqueIdentifier>{251fccab-ca6b-4418-9b38-78bcb6d89b44}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Play">
+    <Filter Include="ソース ファイル\Scene\Play">
       <UniqueIdentifier>{2eaacaa1-b3ba-474e-8ff8-a889b0685464}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Player">
+      <UniqueIdentifier>{6cf08307-09ba-4b4e-a14c-262e6652ee87}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -79,7 +82,10 @@
       <Filter>ソース ファイル\Fish</Filter>
     </ClCompile>
     <ClCompile Include="src\Play\Play.cpp">
-      <Filter>ソース ファイル\Play</Filter>
+      <Filter>ソース ファイル\Scene\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player\Player.cpp">
+      <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,7 +120,10 @@
       <Filter>ソース ファイル\Fish</Filter>
     </ClInclude>
     <ClInclude Include="src\Play\Play.h">
-      <Filter>ソース ファイル\Play</Filter>
+      <Filter>ソース ファイル\Scene\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player\Player.h">
+      <Filter>ソース ファイル\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
