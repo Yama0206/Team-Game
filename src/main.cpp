@@ -1,6 +1,7 @@
 //ウィンドウを表示するプログラム（ひな形）
 
 #include "DxLib.h"	//DXライブラリのインクルード
+#include "Scene/Scene.h"	
 
 // define
 #define	SCREEN_SIZE_X	640	// X方向の画面サイズを指定
@@ -29,6 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//-----------------------------------------
 	//一番最初に１回だけやる処理をここに書く
+	SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_TITLE;		//シーンID
 
 	//-----------------------------------------
 	//ゲームメインループ
@@ -47,6 +49,51 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		//ここからゲームの本体を書くことになる
 		//-----------------------------------------
 
+		//火山
+		//シーン遷移
+		switch (g_CurrentSceneID)
+		{
+			//タイトルシーン初期化
+			case SCENE_ID_INIT_TITLE:
+
+			break;
+			//タイトルシーン通常処理
+			case SCENE_ID_LOOP_TITLE:
+
+			break;
+			//タイトルシーン終了処理
+			case SCENE_ID_FIN_TITLE:
+
+			break;
+
+
+			//プレイシーン初期化
+			case SCENE_ID_INIT_PLAY:
+
+			break;
+			//プレイシーン通常処理
+			case SCENE_ID_LOOP_PLAY:
+
+			break;
+			//プレイシーン終了処理
+			case SCENE_ID_FIN_PLAY:
+
+			break;
+
+
+			//リザルトシーン初期化処理
+			case SCENE_ID_INIT_RESULT:
+
+			break;
+			//リザルトシーン通常処理
+			case SCENE_ID_LOOP_RESULT:
+
+			break;
+			//リザルトシーン終了処理
+			case SCENE_ID_FIN_RESULT:
+
+			break;
+		}
 
 
 		//-----------------------------------------
