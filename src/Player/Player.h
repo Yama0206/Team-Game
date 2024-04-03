@@ -1,5 +1,7 @@
 #pragma once
 #include "DxLib.h"
+#include "../Mouse/Mouse.h"
+#include "../Input/Input.h"
 
 const char PLAYER_PATH[] = {"a"};		//プレイヤーの画像パス
 

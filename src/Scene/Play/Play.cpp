@@ -14,6 +14,12 @@ void Play::Init()
 	g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
 }
 
+//プレイシーンの初期値設定
+void Play::SetDefaultValue()
+{
+
+}
+
 //プレイシーンの読み込み
 void Play::Load()
 {

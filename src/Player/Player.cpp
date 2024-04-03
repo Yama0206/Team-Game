@@ -1,6 +1,4 @@
 #include "Player.h"
-#include "../Mouse/Mouse.h"
-#include "../Input/Input.h"
 
 //ƒvƒŒƒCƒ„[‚Ì‰Šú‰»
 void Player::Init()
