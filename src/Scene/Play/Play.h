@@ -4,6 +4,8 @@
 #include "../../Player/Player.h"
 #include "../../Fish/Fish.h"
 #include "../../Mouse/Mouse.h"
+#include "../../TimeLimit/TimeLimit.h"
+
 
 class Play
 {
