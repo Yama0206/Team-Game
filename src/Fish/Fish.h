@@ -4,7 +4,7 @@
 const int FISH_MAX_NUM = 4;
 
 // ‹›‚Ì‰æ‘œƒpƒX
-const char FISH_PATH[FISH_MAX_NUM][256] = { "" };
+const char FISH_PATH[FISH_MAX_NUM][256] = { "data/play/fish.png" };
 
 // ‹›‚Ì‘¬“x
 const float FISH_SPEED = 5.0f;

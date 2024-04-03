@@ -8,6 +8,10 @@ class Play
 {
 private:
 	Player player;
+
+	int backgroundHandle;	//背景画像ハンドル
+	int jettyHandle;		//桟橋画像ハンドル
+
 public:
 	//プレイシーンの初期化
 	void Init();
