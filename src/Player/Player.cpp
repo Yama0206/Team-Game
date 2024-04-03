@@ -3,6 +3,9 @@
 //プレイヤーの初期化
 void Player::Init()
 {
+	//プレイヤーの状態初期化
+	plStatus = Normal;
+
 	//プレイヤーの座標の初期化
 	posX = 0;		//X座標
 	posY = 0;		//Y座標
@@ -20,6 +23,9 @@ void Player::Load()
 //プレイヤーの初期値設定
 void Player::SetDefaultValue()
 {
+	//プレイヤーの状態
+	plStatus = Normal;
+
 	//プレイヤーの座標の初期化
 	posX = 400;		//X座標
 	posY = 500;		//Y座標
