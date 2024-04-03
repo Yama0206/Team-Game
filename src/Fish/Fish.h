@@ -10,8 +10,8 @@ const char FISH_PATH[FISH_MAX_NUM][256] = { "data/play/fish.png" };
 const float FISH_SPEED = 5.0f;
 
 // 魚画像のサイズ
-const int FISH_X_SIZE = 50;
-const int FISH_Y_SIZE = 10;
+const int FISH_X_SIZE = 100;
+const int FISH_Y_SIZE = 42;
 
 // Fishクラス
 class Fish {
