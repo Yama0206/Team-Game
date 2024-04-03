@@ -10,6 +10,7 @@ TimeLimit timeLimit;	//時間制限
 void Play::Init()
 {
 	player.Init();		//プレイヤーの初期化
+	fish.Init();		//フィッシュの初期化
 
 	//制限時間の初期化
 	timeLimit.Init();
@@ -33,16 +34,17 @@ void Play::Load()
 	backgroundHandle = LoadGraph(BACKGROUND_PATH);	//背景
 	jettyHandle = LoadGraph(JETTY_PATH);			//桟橋
 	
-	//プレイヤー画像の読み込み
-	player.Load();									
+	//プレイヤー関連
+	player.Load();									//プレイヤー画像の読み込み
+	fish.Load();									//フィッシュの画像の読み込み
 
 }
 
 //プレイヤーシーンの通常処理
 void Play::Step()
 {
-	//プレイヤーの通常処理
-	player.Step();
+	player.Step();			//プレイヤーの通常処理
+	fish.Step();			//フィッシュの通常処理
 
 	//制限時間の通常処理
 	timeLimit.Step();
@@ -58,15 +60,15 @@ void Play::Draw()
 	//制限時間の描画
 	timeLimit.Draw();
 
-	//プレイヤー画像の描画
-	player.Draw();
+	fish.Draw();		//フィッシュ画像の描画
+	player.Draw();		//プレイヤー画像の描画
 }
 
 //プレイヤーシーンの終了処理
 void Play::Fin()
 {
-	//プレイヤーの終了処理
-	player.Fin();
+	player.Fin();		//プレイヤーの終了処理
+	fish.Fin();			//フィッシュの終了処理
 
 	//制限時間の終了処理
 	timeLimit.Fin();
