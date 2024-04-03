@@ -1,6 +1,8 @@
 #pragma once
 #include "DxLib.h"
 
+const char PLAYER_PATH[] = {"a"};		//プレイヤーの画像パス
+
 class Player
 {
 private:
@@ -16,6 +18,12 @@ public:
 
 	//プレイヤーの初期化
 	void Init();
+
+	//プレイヤーの初期値設定
+	
+
+	//プレイヤーの読み込み処理
+	void Load();
 
 	//プレイヤーの通常処理
 	void Step();

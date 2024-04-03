@@ -6,11 +6,17 @@
 void Player::Init()
 {
 	//プレイヤーの座標の初期化
-	posX = 10;
-	posY = 10;
+	posX = 0;		//X座標
+	posY = 0;		//Y座標
 
 	//プレイヤーの画像ハンドルの初期化
 	ImageHundle = -1;
+}
+
+//プレイヤーの読み込み処理
+void Player::Load()
+{
+	ImageHundle = LoadGraph(PLAYER_PATH);
 }
 
 //プレイヤーの通常処理
