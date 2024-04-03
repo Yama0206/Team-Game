@@ -9,10 +9,18 @@ const int PLAYER_WIDE = 47;									//プレイヤー画像の横幅
 const int PLAYER_HIGHT = 122;								//プレイヤー画像の縦幅
 const float PLAYER_RAD = 23.5;								//プレイヤー画像の半径
 
+enum PlayerStatus
+{
+	Normal = 0,		//通常の状態
+	Shoot,			//釣竿を放つ
+	Stay,			//魚を待っている
+};
+
 class Player
 {
 private:
-	
+	PlayerStatus plStatus;	//プレイヤーの状態
+
 	float posX, posY;		//プレイヤーの座標
 	int ImageHundle;		//プレイヤー画像ハンドル
 
