@@ -70,6 +70,9 @@ void Fish::Step()
 	//移動処理
 	Move();
 
+	//魚の最大数までfor分を回す
+	SetPopTime();
+
 	//座標更新処理
 	UpdatePos();
 }
@@ -83,6 +86,8 @@ void Fish::Draw()
 			DrawRotaGraph(_X[FishIndex], _Y[FishIndex], 1.0f, 0.0f, handle[FishIndex], true, isLeft[FishIndex]);
 		}
 	}
+
+	DrawFormatString(30, 30, GetColor(255, 0, 0), "%d", Poptime[0]);
 }
 
 // 終了処理
@@ -123,6 +128,10 @@ void Fish::SetPopTime()
 	//魚の最大数までfor分を回す
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++)
 	{
-	
+		if (FishIndex <= 4) {
+		
+		}
 	}
+
+	Poptime[0] = GetRand(10);
 }
