@@ -20,8 +20,8 @@ void Player::Load()
 void Player::SetDefaultValue()
 {
 	//プレイヤーの座標の初期化
-	posX = 0;		//X座標
-	posY = 0;		//Y座標
+	posX = 400;		//X座標
+	posY = 500;		//Y座標
 }
 
 //プレイヤーの通常処理
@@ -33,7 +33,7 @@ void Player::Step()
 //プレイヤーの描画処理
 void Player::Draw()
 {
-	DrawFormatString(40, 40, GetColor(255, 0, 0), "%d, %d", posX, posY);
+	DrawRotaGraph(posX, posY, 1.0f, 0.0f, ImageHundle, true, false);
 }
 
 //プレイヤーの終了処理

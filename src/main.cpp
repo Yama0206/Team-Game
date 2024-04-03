@@ -100,6 +100,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 				play.Load();	//プレイシーンの読み込み
 
+				play.SetDefaultValue();
+
 				break;
 				//プレイシーン通常処理
 			case SCENE_ID_LOOP_PLAY:

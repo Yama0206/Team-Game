@@ -17,7 +17,7 @@ void Play::Init()
 //プレイシーンの初期値設定
 void Play::SetDefaultValue()
 {
-
+	player.SetDefaultValue();
 }
 
 //プレイシーンの読み込み
@@ -26,6 +26,8 @@ void Play::Load()
 	//画像読み込み
 	backgroundHandle = LoadGraph(BACKGROUND_PATH);	//背景
 	jettyHandle = LoadGraph(JETTY_PATH);	//桟橋
+
+	player.Load();
 
 }
 

@@ -3,15 +3,19 @@
 #include "../Mouse/Mouse.h"
 #include "../Input/Input.h"
 
-const char PLAYER_PATH[] = {"a"};		//プレイヤーの画像パス
+const char PLAYER_PATH[] = {"data/play/player.png"};		//プレイヤーの画像パス
+
+const int PLAYER_WIDE = 47;									//プレイヤー画像の横幅
+const int PLAYER_HIGHT = 122;								//プレイヤー画像の縦幅
+const float PLAYER_RAD = 23.5;								//プレイヤー画像の半径
 
 class Player
 {
 private:
-	//プレイヤーの座標
-	float posX, posY;
-	//プレイヤー画像ハンドル
-	int ImageHundle;
+	
+	float posX, posY;		//プレイヤーの座標
+	int ImageHundle;		//プレイヤー画像ハンドル
+
 	
 public:
 	//X座標、Y座標を取得
