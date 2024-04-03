@@ -7,6 +7,10 @@ void Play::Init()
 	//ƒvƒŒƒCƒ„[‚Ì‰Šú‰»
 	player.Init();
 
+	//‰æ‘œ“Ç‚İ‚İ
+	backgroundHandle = LoadGraph("data/play/backGround.png");	//”wŒi
+	jettyHandle = LoadGraph("data/play/jetty.png");	//V‹´
+
 	g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
 }
 
@@ -19,6 +23,10 @@ void Play::Step()
 //ƒvƒŒƒCƒ„[ƒV[ƒ“‚Ì•`‰æˆ—
 void Play::Draw()
 {
+	//”wŒi•`‰æ
+	DrawGraph(0, 0, backgroundHandle, true);	//”wŒi
+	DrawGraph(0, 0, jettyHandle, true);	//V‹´
+
 	player.Draw();
 }
 
