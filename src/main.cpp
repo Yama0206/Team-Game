@@ -96,13 +96,21 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 				//プレイシーン初期化
 			case SCENE_ID_INIT_PLAY:
 
+				play.Init();	//プレイシーン初期化
+
 				break;
 				//プレイシーン通常処理
 			case SCENE_ID_LOOP_PLAY:
 
+				play.Step();	//プレイシーンの通常処理
+
+				play.Draw();	//プレイシーンの描画処理
+
 				break;
 				//プレイシーン終了処理
 			case SCENE_ID_FIN_PLAY:
+
+				play.Fin();		//プレイシーンの終了処理
 
 				break;
 
