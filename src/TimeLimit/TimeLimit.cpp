@@ -45,7 +45,7 @@ void TimeLimit::Draw()
 	
 	//ˆê‚ÌˆÊ
 	imageNum = currentTime % 10;	//‰æ‘œ—p”š
-	DrawGraph(30+50, SCREEN_SIZE_Y - 80, imageHandle[imageNum], true);
+	DrawGraph(30+45, SCREEN_SIZE_Y - 80, imageHandle[imageNum], true);
 }
 
 //I—¹ˆ—
