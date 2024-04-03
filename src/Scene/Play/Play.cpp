@@ -12,6 +12,8 @@ void Play::Init()
 	player.Init();		//プレイヤーの初期化
 	fish.Init();		//フィッシュの初期化
 
+	lure.Init();
+
 	//制限時間の初期化
 	timeLimit.Init();
 
@@ -37,7 +39,7 @@ void Play::Load()
 	//プレイヤー関連
 	player.Load();									//プレイヤー画像の読み込み
 	fish.Load();									//フィッシュの画像の読み込み
-
+	lure.Load();
 }
 
 //プレイヤーシーンの通常処理
@@ -48,6 +50,7 @@ void Play::Step()
 
 	//制限時間の通常処理
 	timeLimit.Step();
+	lure.Step();
 }
 
 //プレイヤーシーンの描画処理
@@ -60,6 +63,8 @@ void Play::Draw()
 	//制限時間の描画
 	timeLimit.Draw();
 
+	lure.Draw();
+
 	fish.Draw();		//フィッシュ画像の描画
 	player.Draw();		//プレイヤー画像の描画
 }
@@ -67,6 +72,8 @@ void Play::Draw()
 //プレイヤーシーンの終了処理
 void Play::Fin()
 {
+	lure.Fin();
+
 	player.Fin();		//プレイヤーの終了処理
 	fish.Fin();			//フィッシュの終了処理
 
