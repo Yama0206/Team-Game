@@ -33,7 +33,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	g_CurrentSceneID = SCENE_ID_INIT_TITLE;		//シーンID
 
 	//シーンクラス宣言
-	Play play;		//プレイシーン
+	Play play;				//プレイシーン
 
 	//入力制御初期化
 	Input::Init();
