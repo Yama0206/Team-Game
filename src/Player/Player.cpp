@@ -17,6 +17,7 @@ void Player::Load()
 	ImageHundle = LoadGraph(PLAYER_PATH);
 }
 
+//プレイヤーの初期値設定
 void Player::SetDefaultValue()
 {
 	//プレイヤーの座標の初期化
@@ -33,6 +34,7 @@ void Player::Step()
 //プレイヤーの描画処理
 void Player::Draw()
 {
+	//プレイヤー画像の描画
 	DrawRotaGraph(posX, posY, 1.0f, 0.0f, ImageHundle, true, false);
 }
 
