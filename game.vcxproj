@@ -32,6 +32,7 @@
     <ClCompile Include="src\Scene\Title\Title.cpp" />
     <ClCompile Include="src\Player\Player.cpp" />
     <ClCompile Include="src\Sound\Sound.cpp" />
+    <ClCompile Include="src\TimeLimit\TimeLimit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Animation\Animation.h" />
@@ -47,6 +48,7 @@
     <ClInclude Include="src\Scene\Scene.h" />
     <ClInclude Include="src\Scene\Title\Title.h" />
     <ClInclude Include="src\Sound\Sound.h" />
+    <ClInclude Include="src\TimeLimit\TimeLimit.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
