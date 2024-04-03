@@ -16,9 +16,9 @@ Lure::Lure()
 	_SaveY = 0.0f;
 
 	// 使用中かどうか
-	isActive = false;
+	isActive = true;
 	// ルアーが画面の左半分にあるか
-	isLureLeft = false;
+	isLureLeft = true;
 
 	// ルアーのマウス
 	LureMouse = {};
@@ -35,12 +35,12 @@ void Lure::UpdatePos()
 void Lure::Init()
 { 
 	// 現在の座標
-	_X = 0.0f;
-	_Y = 0.0f;
+	_X = 400.0f;
+	_Y = 440.0f;
 
 	// 直前の座標
-	_SaveX = 0.0f;
-	_SaveY = 0.0f;
+	_SaveX = _X;
+	_SaveY = _Y;
 
 	// ルアーのマウス処理初期化
 	LureMouse.Init();
@@ -63,6 +63,8 @@ void Lure::Mouse()
 	if (Input::Mouse::Push(MOUSE_INPUT_LEFT)) {
 		_SaveX = (float)LureMouse.GetX();
 		_SaveY = (float)LureMouse.GetY();
+
+		isActive = true;
 	}
 
 	if (_SaveX < SCREEN_SIZE_X) {
@@ -92,8 +94,6 @@ void Lure::Move()
 	else if (_Y >= _SaveY) {
 		_Y = _SaveY;
 	}
-
-
 }
 
 // 通常処理
@@ -105,7 +105,10 @@ void Lure::Step()
 // 画像描画
 void Lure::Draw()
 {
-	DrawRotaGraph((int)_X, (int)_Y, 0.0f, handle, true, false);
+	if (isActive) {
+		DrawRotaGraph((int)_X, (int)_Y, 1.0f, 0.0f, handle, true, false);
+		DrawRotaGraph(500, 500, 1.0f, 0.0f, handle, true, false);
+	}
 }
 
 // 終了処理

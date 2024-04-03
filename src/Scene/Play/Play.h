@@ -6,6 +6,7 @@
 #include "../../Mouse/Mouse.h"
 #include "../../TimeLimit/TimeLimit.h"
 
+#include "../../Player/Lure/Lure.h"
 
 class Play
 {
@@ -13,6 +14,8 @@ private:
 	//クラスの変数宣言
 	Player player;		//プレイヤークラス
 	Fish fish;			//魚クラス
+
+	Lure lure;
 
 	int backgroundHandle;	//背景画像ハンドル
 	int jettyHandle;		//桟橋画像ハンドル
