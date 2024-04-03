@@ -20,7 +20,7 @@ public:
 	void Init();
 
 	//プレイヤーの初期値設定
-	
+	void SetDefaultValue();
 
 	//プレイヤーの読み込み処理
 	void Load();

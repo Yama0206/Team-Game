@@ -19,6 +19,13 @@ void Player::Load()
 	ImageHundle = LoadGraph(PLAYER_PATH);
 }
 
+void Player::SetDefaultValue()
+{
+	//プレイヤーの座標の初期化
+	posX = 0;		//X座標
+	posY = 0;		//Y座標
+}
+
 //プレイヤーの通常処理
 void Player::Step()
 {
