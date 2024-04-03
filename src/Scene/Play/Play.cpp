@@ -1,5 +1,6 @@
 #include "Play.h"
 
+//画像パス
 const char BACKGROUND_PATH[] = { "data/play/backGround.png" };		//プレイシーンの背景画像のパス
 const char JETTY_PATH[] = { "data/play/jetty.png" };					//プレイシーンの桟橋画像のパス
 
