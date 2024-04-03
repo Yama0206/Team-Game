@@ -1,4 +1,5 @@
 #pragma once
+#include "../../Mouse/Mouse.h"
 
 // 浮きの画像パス
 const char LURE_PATH[256] = { "data/play/lure.png" };
@@ -8,13 +9,19 @@ const int LURE_SIZE = 10;
 
 class Lure {
 private:
-	//Mouse LureMouse; // ルアーのマウス処理クラス
+	Mouse LureMouse;
+
+	enum LureDirection {
+		LURE_LEFT = 0,
+		LURE_RIGHT,
+	};
 
 	int handle; // ルアー画像ハンドル
 	float _X, _Y; // 現在の座標
 	float _SaveX, _SaveY; // 移動後の座標
 
 	bool isActive; // 使用中かどうか
+	bool isLureLeft; // ルアーが画面の左半分にあるか
 public:
 
 	Lure(); // コンストラクタ
@@ -44,6 +51,12 @@ public:
 
 	// 画像ロード
 	void Load();
+
+	// マウス処理
+	void Mouse();
+
+	// 移動処理
+	void Move();
 
 	// 通常処理
 	void Step();

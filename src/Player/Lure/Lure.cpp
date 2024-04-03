@@ -1,7 +1,7 @@
 #include "Lure.h"
 #include "DxLib.h"
-#include "../../Mouse/Mouse.h"
 #include "../../Input/Input.h"
+#include "../../Scene/Scene.h"
 
 // コンストラクタ
 Lure::Lure()
@@ -17,6 +17,11 @@ Lure::Lure()
 
 	// 使用中かどうか
 	isActive = false;
+	// ルアーが画面の左半分にあるか
+	isLureLeft = false;
+
+	// ルアーのマウス
+	LureMouse = {};
 }
 
 // 座標更新用
@@ -38,7 +43,7 @@ void Lure::Init()
 	_SaveY = 0.0f;
 
 	// ルアーのマウス処理初期化
-	//LureMouse.Init();
+	LureMouse.Init();
 }
 
 // 画像ロード
@@ -48,33 +53,53 @@ void Lure::Load()
 	handle = LoadGraph(LURE_PATH);
 }
 
-// 通常処理
-void Lure::Step()
+// マウス処理
+void Lure::Mouse()
 {
 	// マウスの動き
-	//LureMouse.Move();
+	LureMouse.Move();
 
 	// 左クリックを押したなら
 	if (Input::Mouse::Push(MOUSE_INPUT_LEFT)) {
-
+		_SaveX = (float)LureMouse.GetX();
+		_SaveY = (float)LureMouse.GetY();
 	}
 
-	//_SaveX = LureMouse.GetX();
-	//_SaveY = LureMouse.GetY();
+	if (_SaveX < SCREEN_SIZE_X) {
+		isLureLeft = true;
+	}
+	else {
+		isLureLeft = false;
+	}
+}
 
+// 移動処理
+void Lure::Move()
+{
 	// ルアーをクリックしたところまで移動させる
-	if (_X < _SaveX) {
-		_X += _SaveX / 60;
+	// クリックしたところまで動いたら止まる
+	if ((isLureLeft && _X > _SaveX) ||
+		(!isLureLeft && _X < _SaveX)) {
+		_X += (_SaveX - SCREEN_SIZE_X) / 60;
 	}
-	else if (_X >= _SaveX) {
+	else {
 		_X = _SaveX;
 	}
+
 	if (_Y < _SaveY) {
 		_Y += _SaveY / 60;
 	}
 	else if (_Y >= _SaveY) {
 		_Y = _SaveY;
 	}
+
+
+}
+
+// 通常処理
+void Lure::Step()
+{
+
 }
 
 // 画像描画
