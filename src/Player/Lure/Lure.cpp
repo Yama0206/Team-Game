@@ -52,15 +52,15 @@ void Lure::Load()
 void Lure::Step()
 {
 	// マウスの動き
-	LureMouse.Move();
+	//LureMouse.Move();
 
 	// 左クリックを押したなら
 	if (Input::Mouse::Push(MOUSE_INPUT_LEFT)) {
 
 	}
 
-	_SaveX = LureMouse.GetX();
-	_SaveY = LureMouse.GetY();
+	//_SaveX = LureMouse.GetX();
+	//_SaveY = LureMouse.GetY();
 
 	// ルアーをクリックしたところまで移動させる
 	if (_X < _SaveX) {
@@ -80,7 +80,7 @@ void Lure::Step()
 // 画像描画
 void Lure::Draw()
 {
-	DrawRotaGraph(_X, _Y, 0.0f, handle, true, false);
+	DrawRotaGraph((int)_X, (int)_Y, 0.0f, handle, true, false);
 }
 
 // 終了処理

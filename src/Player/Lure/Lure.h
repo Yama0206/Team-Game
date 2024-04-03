@@ -8,7 +8,7 @@ const int LURE_SIZE = 10;
 
 class Lure {
 private:
-	Mouse LureMouse; // ルアーのマウス処理クラス
+	//Mouse LureMouse; // ルアーのマウス処理クラス
 
 	int handle; // ルアー画像ハンドル
 	float _X, _Y; // 現在の座標
@@ -32,9 +32,9 @@ public:
 	float GetYPos() { return _Y; }
 
 	// 移動後のX座標取得用(引数:移動後の座標)
-	void GetSaveXPos(int X) { _SaveX = X; }
+	void GetSaveXPos(float X) { _SaveX = X; }
 	// 移動後のY座標取得用(引数:移動後の座標)
-	void GetSaveYPos(int Y) { _SaveY = Y; }
+	void GetSaveYPos(float Y) { _SaveY = Y; }
 
 	// 座標更新用
 	void UpdatePos();
