@@ -1,5 +1,6 @@
 #include "Fish.h"
 #include "../Scene/Scene.h"
+#include "../FrameRate/FrameRate.h"
 
 #include "DxLib.h"
 
@@ -16,13 +17,14 @@ Fish::Fish()
 		// 直前の座標
 		_SaveX[FishIndex] = 0.0f;
 		_SaveY[FishIndex] = 0.0f;
-
-		//魚が出てくるまでの時間
-		Poptime[FishIndex] = 0;
 		
 		isLeft[FishIndex] = true; // 左を向いているかどうか
-		isActive[FishIndex] = true; // 生きているかどうか
+		isActive[FishIndex] = false; // 生きているかどうか
 	}
+
+	//魚が出てくるまでの時間
+	Poptime = 0;
+	countTime = 0;
 }
 
 // 座標更新用
@@ -47,12 +49,20 @@ void Fish::Init()
 		_SaveX[FishIndex] = _X[FishIndex];
 		_SaveY[FishIndex] = _Y[FishIndex];
 
-		//魚が出てくるまでの時間
-		Poptime[FishIndex] = 0;
-
 		//左を向いているかどうか
-		isLeft[FishIndex] = true;
+		if (GetRand(1) == 0)
+		{
+			isLeft[FishIndex] = true;
+		}
+		else
+		{
+			isLeft[FishIndex] = false;
+		}
+		
 	}
+
+	//魚が出てくるまでの時間(1~5秒)
+	Poptime = GetRand(4) + 1;
 }
 
 // 画像ロード
@@ -72,6 +82,7 @@ void Fish::Step()
 
 	//魚の最大数までfor分を回す
 	SetPopTime();
+	Pop();
 
 	//座標更新処理
 	UpdatePos();
@@ -86,7 +97,7 @@ void Fish::Draw()
 			DrawRotaGraph(_X[FishIndex], _Y[FishIndex], 1.0f, 0.0f, handle[FishIndex], true, isLeft[FishIndex]);
 		}
 
-		DrawFormatString(30, 30, GetColor(255, 0, 0), "%d", Poptime[0]);
+		DrawFormatString(30, 30, GetColor(255, 0, 0), "%d", Poptime);
 	}
 
 	
@@ -107,12 +118,16 @@ void Fish::Move()
 {
 	//魚の最大数までfor分を回す
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
-		// 魚の移動処理
-		if (isLeft[FishIndex]) {
-			_SaveX[FishIndex] -= FISH_SPEED; // 左を向いているとき左に動く
-		}
-		else {
-			_SaveX[FishIndex] += FISH_SPEED; // 右を向いているときに右に動く
+
+		if (isActive[FishIndex])
+		{
+			// 魚の移動処理
+			if (isLeft[FishIndex]) {
+				_X[FishIndex] -= FISH_SPEED; // 左を向いているとき左に動く
+			}
+			else {
+				_X[FishIndex] += FISH_SPEED; // 右を向いているときに右に動く
+			}
 		}
 
 		// 魚が画面外に行ったとき
@@ -128,10 +143,55 @@ void Fish::Move()
 void Fish::SetPopTime()
 {
 	//魚の最大数までfor分を回す
-	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++)
+	/*for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++)
 	{
 		if (FishIndex <= 4) {
 			Poptime[FishIndex] = GetRand(10);
+		}
+	}*/
+
+	countTime += 1.0f / FRAME_RATE;
+}
+
+//魚出現
+void Fish::Pop()
+{
+	if (countTime > Poptime)
+	{
+		for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++)
+		{
+			if (!isActive[FishIndex])
+			{
+				//左を向いているかどうか
+				if (GetRand(1) == 0)
+				{
+					isLeft[FishIndex] = true;
+				}
+				else
+				{
+					isLeft[FishIndex] = false;
+				}
+
+				if (isLeft[FishIndex])
+				{
+					_X[FishIndex] = SCREEN_SIZE_X+ FISH_X_SIZE/2;
+					_Y[FishIndex] = GetRand(SCREEN_SIZE_Y - 145 - 30) + 30;
+				}
+				else
+				{
+					_X[FishIndex] = 0- FISH_X_SIZE/2;
+					_Y[FishIndex] = GetRand(SCREEN_SIZE_Y - 145 - 30) + 30;
+				}
+
+				isActive[FishIndex] = true;
+
+				fishSpeed[FishIndex] = GetRand(4) + 1;
+
+				Poptime = GetRand(4) + 1;
+				countTime = 0;
+
+				break;
+			}
 		}
 	}
 }

@@ -46,6 +46,9 @@
     <ClCompile Include="src\Scene\Result\Result.cpp">
       <Filter>ソース ファイル\Scene\result</Filter>
     </ClCompile>
+    <ClCompile Include="src\Player\Lure\Lure.cpp">
+      <Filter>ソース ファイル\Player\Lure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Animation\Animation.h">
@@ -92,6 +95,9 @@
     </ClInclude>
     <ClInclude Include="src\Scene\Result\Result.h">
       <Filter>ソース ファイル\Scene\result</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player\Lure\Lure.h">
+      <Filter>ソース ファイル\Player\Lure</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +148,9 @@
     </Filter>
     <Filter Include="ソース ファイル\Scene\result">
       <UniqueIdentifier>{cca11f0b-cb6d-4de4-bb89-24b3bbf7d68a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Player\Lure">
+      <UniqueIdentifier>{37d282c2-c847-4e47-a5f0-001fe9205170}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

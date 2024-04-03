@@ -1,7 +1,7 @@
 #pragma once
 
 // 魚の最大数
-const int FISH_MAX_NUM = 4;
+const int FISH_MAX_NUM = 10;
 
 // 魚の画像パス
 const char FISH_PATH[] = { "data/play/fish.png" };
@@ -19,7 +19,10 @@ private:
 	int handle[FISH_MAX_NUM];								 // 魚画像ハンドル
 	float _X[FISH_MAX_NUM], _Y[FISH_MAX_NUM];				 // 現在の座標
 	float _SaveX[FISH_MAX_NUM], _SaveY[FISH_MAX_NUM];		 // 移動後の座標
-	int Poptime[FISH_MAX_NUM];								 //魚が出てくるまでの時間
+	int Poptime;											 //魚が出てくるまでの時間
+	float countTime;
+
+	int fishSpeed[FISH_MAX_NUM];	//移動速度
 
 	bool isLeft[FISH_MAX_NUM];								 // 左を向いているかどうか
 	bool isActive[FISH_MAX_NUM];							 //	生きているかどうか
@@ -69,4 +72,7 @@ public:
 
 	//出現時間管理処理
 	void SetPopTime();
+
+	//魚出現
+	void Pop();
 };
