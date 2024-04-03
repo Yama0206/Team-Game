@@ -80,7 +80,7 @@ void Fish::Draw()
 	//‹›‚ÌÅ‘å”‚Ü‚Åfor•ª‚ğ‰ñ‚·
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
 		if (isActive[FishIndex]) {
-			DrawRotaGraph(_X[FishIndex], _Y[FishIndex], 1.0f, 0.0f, handle[FishIndex], true, isLeft[FishIndex]);
+			DrawRotaGraph((int)_X[FishIndex], (int)_Y[FishIndex], 1.0f, 0.0f, handle[FishIndex], true, isLeft[FishIndex]);
 		}
 	}
 }

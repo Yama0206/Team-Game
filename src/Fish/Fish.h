@@ -41,10 +41,10 @@ public:
 	float GetYPos(int FishIndex) { return _Y[FishIndex]; }
 
 	// 移動後のX座標取得用(引数:移動後の座標,配列番号)
-	void GetSaveXPos(int X,int FishIndex) { _SaveX[FishIndex] = X; }
+	void GetSaveXPos(float X,int FishIndex) { _SaveX[FishIndex] = X; }
 
 	// 移動後のY座標取得用(引数:移動後の座標,配列番号)
-	void GetSaveYPos(int Y,int FishIndex) { _SaveY[FishIndex] = Y; }
+	void GetSaveYPos(float Y,int FishIndex) { _SaveY[FishIndex] = Y; }
 
 	// 座標更新用(引数:配列番号
 	void UpdatePos();
