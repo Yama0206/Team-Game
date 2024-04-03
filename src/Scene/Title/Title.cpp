@@ -29,7 +29,7 @@ void TitleStep()
 //•`‰æ
 void TitleDraw()
 {
-	//”qŒ[•`‰æ
+	//”wŒi•`‰æ
 	DrawGraph(0, 0, titleImageHandle, true);
 }
 

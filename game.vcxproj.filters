@@ -40,6 +40,12 @@
     <ClCompile Include="src\Scene\Play\Play.cpp">
       <Filter>ソース ファイル\Scene\Play</Filter>
     </ClCompile>
+    <ClCompile Include="src\TimeLimit\TimeLimit.cpp">
+      <Filter>ソース ファイル\TimeLimit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene\Result\Result.cpp">
+      <Filter>ソース ファイル\Scene\result</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Animation\Animation.h">
@@ -80,6 +86,12 @@
     </ClInclude>
     <ClInclude Include="src\Scene\Play\Play.h">
       <Filter>ソース ファイル\Scene\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TimeLimit\TimeLimit.h">
+      <Filter>ソース ファイル\TimeLimit</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene\Result\Result.h">
+      <Filter>ソース ファイル\Scene\result</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +136,12 @@
     </Filter>
     <Filter Include="ソース ファイル\Scene\Play">
       <UniqueIdentifier>{60f419a9-1c3e-4e45-9263-59254d814f44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\TimeLimit">
+      <UniqueIdentifier>{8644d587-3a70-484d-a125-955fe5b53902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\result">
+      <UniqueIdentifier>{cca11f0b-cb6d-4de4-bb89-24b3bbf7d68a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

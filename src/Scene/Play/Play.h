@@ -2,12 +2,17 @@
 #include "../../Scene/Scene.h"
 #include "DxLib.h"
 #include "../../Player/Player.h"
+#include "../../Fish/Fish.h"
 #include "../../Mouse/Mouse.h"
+#include "../../TimeLimit/TimeLimit.h"
+
 
 class Play
 {
 private:
-	Player player;
+	//クラスの変数宣言
+	Player player;		//プレイヤークラス
+	Fish fish;			//魚クラス
 
 	int backgroundHandle;	//背景画像ハンドル
 	int jettyHandle;		//桟橋画像ハンドル

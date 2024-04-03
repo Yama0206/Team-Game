@@ -6,6 +6,7 @@
 #include "Scene/Scene.h"			//シーン関連
 #include "Scene/Title/Title.h"		//タイトル
 #include "Scene/Play/Play.h"
+#include "Scene/Result/Result.h"	//リザルト
 
 // Win32アプリケーションは WinMain関数 から始まる
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
@@ -33,7 +34,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	g_CurrentSceneID = SCENE_ID_INIT_TITLE;		//シーンID
 
 	//シーンクラス宣言
-	Play play;		//プレイシーン
+	Play play;				//プレイシーン
 
 	//入力制御初期化
 	Input::Init();
@@ -122,13 +123,20 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 				//リザルトシーン初期化処理
 			case SCENE_ID_INIT_RESULT:
 
+				ResultInit();
+
 				break;
 				//リザルトシーン通常処理
 			case SCENE_ID_LOOP_RESULT:
 
+				ResultStep();
+				ResultDraw();
+
 				break;
 				//リザルトシーン終了処理
 			case SCENE_ID_FIN_RESULT:
+
+				ResultFin();
 
 				break;
 			}
