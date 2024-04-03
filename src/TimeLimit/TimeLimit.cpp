@@ -29,10 +29,10 @@ void TimeLimit::Step()
 		timeCount = 0.0f;
 	}
 
-	//ŠÔ‚ÌƒJƒEƒ“ƒg‚ğ‚O‚ÉŒÅ’è
+	//§ŒÀŠÔ‚ª0‚É‚È‚Á‚½‚ç
 	if (currentTime <= 0)
 	{
-		currentTime = 0;
+		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 	}
 }
 
