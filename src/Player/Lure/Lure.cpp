@@ -38,6 +38,11 @@ void Lure::UpdatePos()
 // 初期化
 void Lure::Init()
 { 
+	// 使用中かどうか
+	isActive = false;
+	//ルアーを投げたら
+	isUse = false;
+
 	// 現在の座標
 	_X = LURE_POS_X;
 	_Y = LURE_POS_Y;
@@ -48,6 +53,9 @@ void Lure::Init()
 
 	// ルアーのマウス処理初期化
 	LureMouse.Init();
+
+	//透明度
+	fade = 255;
 }
 
 // 画像ロード
@@ -97,9 +105,13 @@ void Lure::Mouse()
 				_X = zX;
 				_Y = zY;
 
-				//表示フラグ
-				isUse = true;
+				isActive = true;
 			}
+		}
+		if (isActive&&Input::Mouse::Release(MOUSE_INPUT_LEFT))
+		{
+			//使用フラグ
+			isUse = true;
 		}
 	}
 }
@@ -143,6 +155,7 @@ void Lure::Move()
 
 				//使用フラグを折る
 				isUse = false;
+				isActive = false;
 			}
 		}
 	}
@@ -160,12 +173,18 @@ void Lure::Step()
 // 画像描画
 void Lure::Draw()
 {
-	if (isActive) {
+	/*if (isActive) {*/
 
-		DrawRotaGraph((int)_X, (int)_Y, 1.0f, 0.0f, handle, true, false);
+	//透明度変更
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fade);
+	DrawRotaGraph((int)_X, (int)_Y, 1.0f, 0.0f, handle, true, false);
+	//表示を元に戻す
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
 		//DrawRotaGraph(500, 500, 1.0f, 0.0f, handle, true, false);
-	}
+	//}
 	
+	//釣り糸
 	DrawLine(_X, _Y, LURE_POS_X - 2, LURE_POS_Y - 5, GetColor(255, 255, 255));
 
 	//デバック用　ルアーの範囲

@@ -28,6 +28,9 @@ private:
 	bool isLureLeft; // ルアーが画面の左半分にあるか
 
 	bool isUse;	//ルアーを投げたら
+
+	int fade; //透明度
+
 public:
 
 	Lure(); // コンストラクタ

@@ -13,6 +13,9 @@ const float FISH_SPEED = 5.0f;
 const int FISH_X_SIZE = 100;
 const int FISH_Y_SIZE = 42;
 
+//‹›oŒ»Å‘åŠÔ
+const int FISH_POP_TIME = 1;
+
 // FishƒNƒ‰ƒX
 class Fish {
 private:
