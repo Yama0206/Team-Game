@@ -83,11 +83,13 @@ void Fish::Draw()
 	//‹›‚ÌÅ‘å”‚Ü‚Åfor•ª‚ğ‰ñ‚·
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
 		if (isActive[FishIndex]) {
-			DrawRotaGraph((int)_X[FishIndex], (int)_Y[FishIndex], 1.0f, 0.0f, handle[FishIndex], true, isLeft[FishIndex]);
+			DrawRotaGraph(_X[FishIndex], _Y[FishIndex], 1.0f, 0.0f, handle[FishIndex], true, isLeft[FishIndex]);
 		}
+
+		DrawFormatString(30, 30, GetColor(255, 0, 0), "%d", Poptime[0]);
 	}
 
-	DrawFormatString(30, 30, GetColor(255, 0, 0), "%d", Poptime[0]);
+	
 }
 
 // I—¹ˆ—
@@ -129,9 +131,7 @@ void Fish::SetPopTime()
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++)
 	{
 		if (FishIndex <= 4) {
-		
+			Poptime[FishIndex] = GetRand(10);
 		}
 	}
-
-	Poptime[0] = GetRand(10);
 }
