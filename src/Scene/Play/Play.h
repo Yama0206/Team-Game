@@ -16,6 +16,9 @@ public:
 	//プレイシーンの初期化
 	void Init();
 
+	//プレイシーンの読み込み
+	void Load();
+
 	//プレイシーンの通常処理
 	void Step();
 

@@ -1,5 +1,8 @@
 #include "Play.h"
 
+const char BACKGROUND_PATH[] = { "data/play/backGround.png" };		//プレイシーンの背景画像のパス
+const char JETTY_PATH[] = { "data/play/jetty.png" };					//プレイシーンの桟橋画像のパス
+
 
 //プレイシーンの初期化
 void Play::Init()
@@ -7,11 +10,16 @@ void Play::Init()
 	//プレイヤーの初期化
 	player.Init();
 
-	//画像読み込み
-	backgroundHandle = LoadGraph("data/play/backGround.png");	//背景
-	jettyHandle = LoadGraph("data/play/jetty.png");	//桟橋
-
 	g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
+}
+
+//プレイシーンの読み込み
+void Play::Load()
+{
+	//画像読み込み
+	backgroundHandle = LoadGraph(BACKGROUND_PATH);	//背景
+	jettyHandle = LoadGraph(JETTY_PATH);	//桟橋
+
 }
 
 //プレイヤーシーンの通常処理
