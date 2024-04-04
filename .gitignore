@@ -5,3 +5,6 @@
 !.gitignore
 game.vcxproj
 game.vcxproj.filters
+*.vcxproj
+game.vcxproj.filters
+game.vcxproj
