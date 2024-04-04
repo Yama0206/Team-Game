@@ -9,7 +9,8 @@ Fish::Fish()
 	//魚の最大数までfor分を回す
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
 		// ハンドル
-		handle[FishIndex] = 0;
+		handle[IMAGE_TYPE_NORMAL][FishIndex] = -1;
+		handle[IMAGE_TYPE_CAUGHT][FishIndex] = -1;
 
 		// 現在の座標
 		_X[FishIndex] = 0.0f;
@@ -23,6 +24,7 @@ Fish::Fish()
 
 		isLeft[FishIndex] = true; // 左を向いているかどうか
 		isActive[FishIndex] = false; // 生きているかどうか
+		isCaught[FishIndex] = false; // かかっているかどうか
 	}
 
 	//魚が出てくるまでの時間
@@ -40,6 +42,12 @@ void Fish::UpdatePos()
 	}
 }
 
+// さかながかかっている状態にする(引数:配列番号)
+void Fish::isCaughtSetTrue(int FishIndex)
+{
+	isCaught[FishIndex] = true; // かかっているかどうか
+}
+
 // 初期化
 void Fish::Init()
 {
@@ -54,6 +62,7 @@ void Fish::Init()
 
 		isLeft[FishIndex] = true; // 左を向いているかどうか
 		isActive[FishIndex] = false; // 生きているかどうか
+		isCaught[FishIndex] = false; // かかっているかどうか
 
 		//左を向いているかどうか
 		if (GetRand(1) == 0)
@@ -77,7 +86,8 @@ void Fish::Load()
 {
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
 		// 魚の画像ロード
-		handle[FishIndex] = LoadGraph(FISH_PATH);
+		handle[IMAGE_TYPE_NORMAL][FishIndex] = LoadGraph(FISH_PATH);
+		handle[IMAGE_TYPE_CAUGHT][FishIndex] = LoadGraph(CAUGHT_FISH_PATH);
 	}
 }
 
@@ -106,8 +116,16 @@ void Fish::Draw()
 		//魚が使用中なら描画
 		if (isActive[FishIndex])
 		{
-			DrawRotaGraph((int)_X[FishIndex], (int)_Y[FishIndex],
-						1.0f, 0.0f, handle[FishIndex], true, isLeft[FishIndex]);
+			if (!isCaught[FishIndex]) {
+				// かかっていないときは魚のかたち
+				DrawRotaGraph((int)_X[FishIndex], (int)_Y[FishIndex],
+					1.0f, 0.0f, handle[IMAGE_TYPE_NORMAL][FishIndex], true, isLeft[FishIndex]);
+			}
+			else {
+				// かかったときは影
+				DrawRotaGraph((int)_X[FishIndex], (int)_Y[FishIndex],
+					1.0f, 0.0f, handle[IMAGE_TYPE_CAUGHT][FishIndex], true, isLeft[FishIndex]);
+			}
 		}
 
 		//DrawFormatString(30, 30, GetColor(255, 0, 0), "%d", Poptime);
@@ -123,7 +141,7 @@ void Fish::Fin()
 	//魚の最大数までfor分を回す
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
 		// 魚の画像削除
-		DeleteGraph(handle[FishIndex]);
+		DeleteGraph(handle[IMAGE_TYPE_NORMAL][FishIndex]);
 	}
 }
 
@@ -148,7 +166,7 @@ void Fish::Move()
 		//→
 		if (isLeft[FishIndex])
 		{
-			if (_X[FishIndex] < -FISH_X_SIZE / 2)
+			if (_X[FishIndex] < static_cast<float>(-FISH_X_SIZE) / 2)
 			{
 				isActive[FishIndex] = false; // 魚を殺す
 			}
@@ -213,6 +231,9 @@ void Fish::Pop()
 
 				//魚を使用中にする
 				isActive[FishIndex] = true;
+
+				// かかっていないにする
+				isCaught[FishIndex] = false;
 
 				//魚のスピードを設定
 				fishSpeed[FishIndex] = GetRand((int)FISH_SPEED - 1) + 1;
