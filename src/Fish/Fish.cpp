@@ -92,7 +92,7 @@ void Fish::Step()
 void Fish::Draw()
 {
 	//60%‚Å•`‰æ
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255 * 0.6);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)255 * 0.6);
 
 	//‹›‚ÌÅ‘å”‚Ü‚Åfor•ª‚ğ‰ñ‚·
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) 
@@ -100,7 +100,7 @@ void Fish::Draw()
 		//‹›‚ªg—p’†‚È‚ç•`‰æ
 		if (isActive[FishIndex])
 		{
-			DrawRotaGraph(_X[FishIndex], _Y[FishIndex],
+			DrawRotaGraph((int)_X[FishIndex], (int)_Y[FishIndex],
 						1.0f, 0.0f, handle[FishIndex], true, isLeft[FishIndex]);
 		}
 

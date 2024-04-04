@@ -24,6 +24,8 @@ Lure::Lure()
 	//ルアーを投げたら
 	isUse = false;
 
+	fade = -1; //透明度
+
 	// ルアーのマウス
 	LureMouse = {};
 }
@@ -102,8 +104,8 @@ void Lure::Mouse()
 				zY >= 30 && zY <= SCREEN_SIZE_Y - 145)
 			{
 				//クリックした位置にルアーを表示
-				_X = zX;
-				_Y = zY;
+				_X = (float)zX;
+				_Y = (float)zY;
 
 				isActive = true;
 			}
@@ -185,7 +187,7 @@ void Lure::Draw()
 	//}
 	
 	//釣り糸
-	DrawLine(_X, _Y, LURE_POS_X - 2, LURE_POS_Y - 5, GetColor(255, 255, 255));
+	DrawLine((int)_X, (int)_Y, LURE_POS_X - 2, LURE_POS_Y - 5, GetColor(255, 255, 255));
 
 	//デバック用　ルアーの範囲
 	DrawBox(30, 30, SCREEN_SIZE_X - 30, SCREEN_SIZE_Y -145, GetColor(0, 0, 255),false);
