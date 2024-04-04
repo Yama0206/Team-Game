@@ -18,6 +18,9 @@ Fish::Fish()
 		_SaveX[FishIndex] = 0.0f;
 		_SaveY[FishIndex] = 0.0f;
 		
+		// 魚の移動速度
+		fishSpeed[FishIndex] = 0;
+
 		isLeft[FishIndex] = true; // 左を向いているかどうか
 		isActive[FishIndex] = false; // 生きているかどうか
 	}
@@ -95,7 +98,7 @@ void Fish::Step()
 void Fish::Draw()
 {
 	//60%で描画
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)255 * 0.6);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(255 * 0.6));
 
 	//魚の最大数までfor分を回す
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) 
@@ -198,21 +201,21 @@ void Fish::Pop()
 				if (isLeft[FishIndex])
 				{
 					//右端に設定
-					_X[FishIndex] = SCREEN_SIZE_X+ FISH_X_SIZE/2;
-					_Y[FishIndex] = GetRand(SCREEN_SIZE_Y - 145 - 30) + 30;
+					_X[FishIndex] = (float)(SCREEN_SIZE_X + FISH_X_SIZE / 2);
+					_Y[FishIndex] = (float)(GetRand(SCREEN_SIZE_Y - 145 - 30) + 30);
 				}
 				else
 				{
 					//左端に設定
 					_X[FishIndex] = 0 - FISH_X_SIZE / 2;
-					_Y[FishIndex] = GetRand(SCREEN_SIZE_Y - 145 - 30) + 30;
+					_Y[FishIndex] = (float)(GetRand(SCREEN_SIZE_Y - 145 - 30) + 30);
 				}
 
 				//魚を使用中にする
 				isActive[FishIndex] = true;
 
 				//魚のスピードを設定
-				fishSpeed[FishIndex] = GetRand(FISH_SPEED - 1) + 1;
+				fishSpeed[FishIndex] = GetRand((int)FISH_SPEED - 1) + 1;
 
 				//次の出現時間を設定
 				Poptime = GetRand(FISH_POP_TIME) + 1;
