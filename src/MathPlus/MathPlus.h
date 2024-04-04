@@ -11,3 +11,6 @@ float GetAngle(float Ax, float Ay, float Bx, float By);
 
 //ベクトルの内積を求めて正か負を返す：向かせる場所XY　向かせたいものXY
 bool GetInnerProduct(float Ax, float Ay, float Bx, float By);
+
+//度をラジアンに変換（引数：度）
+float DegToRad(float degree);

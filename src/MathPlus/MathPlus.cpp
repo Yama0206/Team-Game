@@ -59,3 +59,9 @@ bool GetInnerProduct(float Ax, float Ay, float Bx, float By)
 		return false;
 	}
 }
+
+//度をラジアンに変換（引数：度）
+float DegToRad(float degree)
+{
+	return degree * (float)M_PI / 180.0f;
+}
