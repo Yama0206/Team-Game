@@ -42,12 +42,15 @@ void Fish::Init()
 {
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
 		// Œ»Ý‚ÌÀ•W
-		_X[FishIndex] = 500.0f;
-		_Y[FishIndex] = 500.0f;
+		_X[FishIndex] = 0.0f;
+		_Y[FishIndex] = 0.0f;
 
 		// ’¼‘O‚ÌÀ•W
 		_SaveX[FishIndex] = _X[FishIndex];
 		_SaveY[FishIndex] = _Y[FishIndex];
+
+		isLeft[FishIndex] = true; // ¶‚ðŒü‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©
+		isActive[FishIndex] = false; // ¶‚«‚Ä‚¢‚é‚©‚Ç‚¤‚©
 
 		//¶‚ðŒü‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©
 		if (GetRand(1) == 0)
