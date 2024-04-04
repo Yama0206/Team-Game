@@ -10,8 +10,8 @@ const int PLAYER_HIGHT = 122;								//プレイヤー画像の縦幅
 const float PLAYER_RAD = 23.5;								//プレイヤー画像の半径
 
 // プレイヤーの初期位置
-const float PLAYER_X_POS = 400.0f;
-const float PLAYER_Y_POS = 510.0f;
+const float PLAYER_POS_X = 400.0f;
+const float PLAYER_POS_Y = 510.0f;
 
 enum PlayerStatus
 {

@@ -27,8 +27,8 @@ void Player::SetDefaultValue()
 	plStatus = Normal;
 
 	//プレイヤーの座標の初期化
-	posX = PLAYER_X_POS;		//X座標
-	posY = PLAYER_Y_POS;		//Y座標
+	posX = PLAYER_POS_X;		//X座標
+	posY = PLAYER_POS_Y;		//Y座標
 }
 
 //プレイヤーの通常処理
@@ -41,13 +41,14 @@ void Player::Step()
 void Player::Draw()
 {
 	//プレイヤー画像の描画
-	DrawRotaGraph(posX, posY, 1.0f, 0.0f, ImageHundle, true, false);
+	DrawRotaGraph((int)posX, (int)posY, 1.0f, 0.0f, ImageHundle, true, false);
 }
 
 //プレイヤーの終了処理
 void Player::Fin()
 {
-
+	// プレイヤー画像削除
+	DeleteGraph(ImageHundle);
 }
 
 //プレイヤーの操作処理

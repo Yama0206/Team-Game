@@ -18,11 +18,13 @@ Lure::Lure()
 
 	// 使用中かどうか
 	isActive = true;
-	// ルアーが画面の左半分にあるか
-	isLureLeft = true;
 
 	//ルアーを投げたら
 	isUse = false;
+	// ルアーを投げているか
+	isThrow = false;
+	// ルアーが画面の左半分にあるか
+	isLureLeft = false;
 
 	fade = -1; //透明度
 
@@ -44,6 +46,8 @@ void Lure::Init()
 	isActive = false;
 	//ルアーを投げたら
 	isUse = false;
+	// ルアーを投げているか
+	isThrow = false;
 
 	// 現在の座標
 	_X = LURE_POS_X;
@@ -70,24 +74,6 @@ void Lure::Load()
 // マウス処理
 void Lure::Mouse()
 {
-	//// マウスの動き
-	//LureMouse.Move();
-
-	//// 左クリックを押したなら
-	//if (Input::Mouse::Push(MOUSE_INPUT_LEFT)) {
-	//	_SaveX = (float)LureMouse.GetX();
-	//	_SaveY = (float)LureMouse.GetY();
-
-	//	isActive = true;
-	//}
-
-	//if (_SaveX < SCREEN_SIZE_X) {
-	//	isLureLeft = true;
-	//}
-	//else {
-	//	isLureLeft = false;
-	//}
-
 	//ルアーが投げられていなかったら
 	if (!isUse)
 	{
@@ -104,39 +90,59 @@ void Lure::Mouse()
 				zY >= 30 && zY <= SCREEN_SIZE_Y - 145)
 			{
 				//クリックした位置にルアーを表示
-				_X = (float)zX;
-				_Y = (float)zY;
+				_SaveX = (float)zX;
+				_SaveY = (float)zY;
 
-				isActive = true;
+				// 投げている判定にする
+				isThrow = true;
+
+				// 投げられた位置が画面の左半分かどうか
+				if (_SaveX < LURE_POS_X) {
+					isLureLeft = true;
+				}
+				else {
+					isLureLeft = false;
+				}
+
+				//isActive = true;
 			}
 		}
-		if (isActive&&Input::Mouse::Release(MOUSE_INPUT_LEFT))
-		{
-			//使用フラグ
-			isUse = true;
-		}
+		//if (isActive&&Input::Mouse::Release(MOUSE_INPUT_LEFT))
+		//{
+		//	//使用フラグ
+		//	isUse = true;
+		//}
 	}
 }
 
 // 移動処理
 void Lure::Move()
 {
-	// ルアーをクリックしたところまで移動させる
-	// クリックしたところまで動いたら止まる
-	/*if ((isLureLeft && _X > _SaveX) ||
-		(!isLureLeft && _X < _SaveX)) {
-		_X += (_SaveX - SCREEN_SIZE_X) / 60;
-	}
-	else {
-		_X = _SaveX;
-	}
+	// ルアーを投げたなら
+	if (isThrow) {
+		// ルアーをクリックしたところまでゆっくり移動させる
+		_X += GetDirection(_SaveX, _SaveY, _X, _Y, 'x', 6);
+		_Y += GetDirection(_SaveX, _SaveY, _X, _Y, 'y', 6);
 
-	if (_Y < _SaveY) {
-		_Y += _SaveY / 60;
+		// クリックしたところまで動いたら止まる
+		if ((isLureLeft && _X <= _SaveX) ||
+			(!isLureLeft && _X >= _SaveX)) {
+			_X = _SaveX; // クリックしたところまで動いたら止まる
+		}
+
+		if (_Y < _SaveY) {
+			_Y = _SaveY; // クリックしたところまで動いたら止まる
+		}
+
+		// クリックしたところまで移動したら
+		if (_X == _SaveX && _Y == _SaveY) {
+			// 投げていない
+			isThrow = false;
+
+			// 使用中にする
+			isUse = true;
+		}
 	}
-	else if (_Y >= _SaveY) {
-		_Y = _SaveY;
-	}*/
 
 	//ルアーを投げれたら
 	if (isUse)
@@ -157,7 +163,8 @@ void Lure::Move()
 
 				//使用フラグを折る
 				isUse = false;
-				isActive = false;
+				
+				//isActive = false;
 			}
 		}
 	}
