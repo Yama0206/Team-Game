@@ -142,7 +142,7 @@ void Fish::Move()
 		//¨
 		if (isLeft[FishIndex])
 		{
-			if (_X[FishIndex] > SCREEN_SIZE_X + FISH_X_SIZE / 2)
+			if (_X[FishIndex] < -FISH_X_SIZE / 2)
 			{
 				isActive[FishIndex] = false; // ‹›‚ðŽE‚·
 			}
@@ -150,7 +150,7 @@ void Fish::Move()
 		//©
 		else
 		{
-			if (_X[FishIndex] < -FISH_X_SIZE / 2)
+			if (_X[FishIndex] > SCREEN_SIZE_X + FISH_X_SIZE / 2)
 			{
 				isActive[FishIndex] = false; // ‹›‚ðŽE‚·
 			}
