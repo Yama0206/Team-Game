@@ -153,7 +153,7 @@ void Effect::Draw(int type)
 			//ƒVƒXƒeƒ€
 		case 0: {
 
-			if (effectInfo[effect_index].type != EFFECT_TYPE_CLICK)
+			if (effectInfo[effect_index].type != EFFECT_TYPE_RIPPLE)
 			{
 				continue;
 			}
