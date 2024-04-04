@@ -107,11 +107,6 @@ void Lure::Mouse()
 				//isActive = true;
 			}
 		}
-		//if (isActive&&Input::Mouse::Release(MOUSE_INPUT_LEFT))
-		//{
-		//	//使用フラグ
-		//	isUse = true;
-		//}
 	}
 }
 
