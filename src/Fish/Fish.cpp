@@ -42,12 +42,15 @@ void Fish::Init()
 {
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
 		// 現在の座標
-		_X[FishIndex] = 500.0f;
-		_Y[FishIndex] = 500.0f;
+		_X[FishIndex] = 0.0f;
+		_Y[FishIndex] = 0.0f;
 
 		// 直前の座標
 		_SaveX[FishIndex] = _X[FishIndex];
 		_SaveY[FishIndex] = _Y[FishIndex];
+
+		isLeft[FishIndex] = true; // 左を向いているかどうか
+		isActive[FishIndex] = false; // 生きているかどうか
 
 		//左を向いているかどうか
 		if (GetRand(1) == 0)
@@ -162,14 +165,6 @@ void Fish::Move()
 //出現時間管理処理
 void Fish::SetPopTime()
 {
-	//魚の最大数までfor分を回す
-	/*for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++)
-	{
-		if (FishIndex <= 4) {
-			Poptime[FishIndex] = GetRand(10);
-		}
-	}*/
-
 	countTime += 1.0f / FRAME_RATE;	//時間をカウント
 }
 

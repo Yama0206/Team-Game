@@ -13,20 +13,7 @@ const int EFFECT_ANIME_MAX_NUM = 10;
 //エフェクトの種類
 enum EFFECT_TYPE
 {
-	EFFECT_TYPE_CLICK = 0,		//クリック
-
-	//=============ｹﾞｰﾑ=============
-
-	EFFECT_TYPE_SLASH,			//斬撃
-	EFFECT_TYPE_GUN_HOLES,		//銃痕
-	EFFECT_TYPE_LIGHTNING,		//電撃
-	EFFECT_TYPE_FEATHER_BREAK,	//羽根破壊
-
-	EFFECT_TYPE_ENEDAMAGE,		//敵のダメージ
-
-	//=============加算=============
-
-	EFFECT_TYPE_BLESSING,		//回復：加算
+	EFFECT_TYPE_RIPPLE = 0,		//波紋
 
 	EFFECT_TYPE_NUM,
 };
