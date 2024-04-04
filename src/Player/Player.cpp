@@ -27,8 +27,8 @@ void Player::SetDefaultValue()
 	plStatus = Normal;
 
 	//プレイヤーの座標の初期化
-	posX = 400;		//X座標
-	posY = 510;		//Y座標
+	posX = PLAYER_X_POS;		//X座標
+	posY = PLAYER_Y_POS;		//Y座標
 }
 
 //プレイヤーの通常処理

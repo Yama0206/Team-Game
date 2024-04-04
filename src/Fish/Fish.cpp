@@ -142,7 +142,7 @@ void Fish::Move()
 		//Å®
 		if (isLeft[FishIndex])
 		{
-			if (_X[FishIndex] > SCREEN_SIZE_X + FISH_X_SIZE / 2)
+			if (_X[FishIndex] < -FISH_X_SIZE / 2)
 			{
 				isActive[FishIndex] = false; // ãõÇéEÇ∑
 			}
@@ -150,7 +150,7 @@ void Fish::Move()
 		//Å©
 		else
 		{
-			if (_X[FishIndex] < -FISH_X_SIZE / 2)
+			if (_X[FishIndex] > SCREEN_SIZE_X + FISH_X_SIZE / 2)
 			{
 				isActive[FishIndex] = false; // ãõÇéEÇ∑
 			}
@@ -201,7 +201,7 @@ void Fish::Pop()
 				else
 				{
 					//ç∂í[Ç…ê›íË
-					_X[FishIndex] = 0- FISH_X_SIZE/2;
+					_X[FishIndex] = 0 - FISH_X_SIZE / 2;
 					_Y[FishIndex] = GetRand(SCREEN_SIZE_Y - 145 - 30) + 30;
 				}
 
