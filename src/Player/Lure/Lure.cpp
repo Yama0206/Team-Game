@@ -187,7 +187,7 @@ void Lure::Draw()
 	//}
 	
 	//釣り糸
-	DrawLine((int)_X, (int)_Y, LURE_POS_X - 2, LURE_POS_Y - 5, GetColor(255, 255, 255));
+	DrawLine((int)_X, (int)_Y, (int)(LURE_POS_X - 2), (int)(LURE_POS_Y - 5), GetColor(255, 255, 255));
 
 	//デバック用　ルアーの範囲
 	DrawBox(30, 30, SCREEN_SIZE_X - 30, SCREEN_SIZE_Y -145, GetColor(0, 0, 255),false);
