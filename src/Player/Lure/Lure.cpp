@@ -82,8 +82,8 @@ void Lure::Mouse()
 		// マウスの位置を取得
 		GetMousePoint(&zX, &zY);
 
-		//左クリックを押したら
-		if (Input::Mouse::Push(MOUSE_INPUT_LEFT))
+		//左クリックを押された かつ 投げている途中じゃない
+		if (Input::Mouse::Push(MOUSE_INPUT_LEFT) && !isThrow)
 		{
 			//ルアー設置範囲内なら以下実行
 			if (zX >= 30 && zX <= SCREEN_SIZE_X - 30 &&
@@ -177,6 +177,10 @@ void Lure::Step()
 // 画像描画
 void Lure::Draw()
 {
+
+	//デバック用　ルアーの範囲
+	DrawBox(30, 30, SCREEN_SIZE_X - 30, SCREEN_SIZE_Y - 145, GetColor(0, 0, 255), false);
+
 	/*if (isActive) {*/
 
 	//透明度変更
@@ -190,9 +194,6 @@ void Lure::Draw()
 	
 	//釣り糸
 	DrawLine((int)_X, (int)_Y, (int)(LURE_POS_X - 2), (int)(LURE_POS_Y - 5), GetColor(255, 255, 255));
-
-	//デバック用　ルアーの範囲
-	DrawBox(30, 30, SCREEN_SIZE_X - 30, SCREEN_SIZE_Y -145, GetColor(0, 0, 255),false);
 }
 
 // 終了処理
