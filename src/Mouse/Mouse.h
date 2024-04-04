@@ -41,6 +41,3 @@ public:
 
 	void SetUse(char set = '0');	//使用中セット：！でfalse
 };
-
-//トリガー用のマウス
-extern Mouse mouseTri;

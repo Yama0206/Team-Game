@@ -28,7 +28,7 @@ void Player::SetDefaultValue()
 
 	//プレイヤーの座標の初期化
 	posX = 400;		//X座標
-	posY = 500;		//Y座標
+	posY = 510;		//Y座標
 }
 
 //プレイヤーの通常処理

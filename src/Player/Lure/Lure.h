@@ -7,6 +7,10 @@ const char LURE_PATH[256] = { "data/play/lure.png" };
 // ルアー画像のサイズ
 const int LURE_SIZE = 10;
 
+//ルアーの初期位置
+const int LURE_POS_X = 400.0f;
+const int LURE_POS_Y = 460.0f;
+
 class Lure {
 private:
 	Mouse LureMouse;
@@ -22,6 +26,11 @@ private:
 
 	bool isActive; // 使用中かどうか
 	bool isLureLeft; // ルアーが画面の左半分にあるか
+
+	bool isUse;	//ルアーを投げたら
+
+	int fade; //透明度
+
 public:
 
 	Lure(); // コンストラクタ

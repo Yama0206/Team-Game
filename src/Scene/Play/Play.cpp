@@ -63,9 +63,11 @@ void Play::Draw()
 	//制限時間の描画
 	timeLimit.Draw();
 
+	fish.Draw();		//フィッシュ画像の描画
+
 	lure.Draw();
 
-	fish.Draw();		//フィッシュ画像の描画
+	
 	player.Draw();		//プレイヤー画像の描画
 }
 
