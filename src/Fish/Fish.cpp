@@ -166,7 +166,7 @@ void Fish::Move()
 		//Å®
 		if (isLeft[FishIndex])
 		{
-			if (_X[FishIndex] < static_cast<float>(-FISH_X_SIZE) / 2)
+			if (_X[FishIndex] < -(FISH_X_SIZE / 2))
 			{
 				isActive[FishIndex] = false; // ãõÇéEÇ∑
 			}

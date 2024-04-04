@@ -11,6 +11,9 @@ const int LURE_SIZE = 10;
 const float LURE_POS_X = 400.0f;
 const float LURE_POS_Y = 460.0f;
 
+// 釣る力の最大値
+const int MAX_FISHING_POWER = 500;
+
 class Lure {
 private:
 	Mouse LureMouse;
@@ -31,6 +34,7 @@ private:
 	bool isThrow; // ルアーを投げているか
 
 	int fade; //透明度
+	int fishingpower; // 竿を引く力
 
 public:
 
@@ -76,4 +80,7 @@ public:
 
 	// 終了処理
 	void Fin();
+	
+	// 釣り処理(引数:配列番号)
+	void Fishing(int FishIndex);
 };
