@@ -17,8 +17,6 @@ Fish::Fish()
 		// 直前の座標
 		_SaveX[FishIndex] = 0.0f;
 		_SaveY[FishIndex] = 0.0f;
-
-		fishSpeed[FISH_MAX_NUM] = 0;	//移動速度
 		
 		isLeft[FishIndex] = true; // 左を向いているかどうか
 		isActive[FishIndex] = false; // 生きているかどうか
@@ -211,7 +209,7 @@ void Fish::Pop()
 				else
 				{
 					//左端に設定
-					_X[FishIndex] = 0- FISH_X_SIZE/2;
+					_X[FishIndex] = 0 - FISH_X_SIZE / 2;
 					_Y[FishIndex] = GetRand(SCREEN_SIZE_Y - 145 - 30) + 30;
 				}
 
