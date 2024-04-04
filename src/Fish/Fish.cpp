@@ -162,14 +162,6 @@ void Fish::Move()
 //出現時間管理処理
 void Fish::SetPopTime()
 {
-	//魚の最大数までfor分を回す
-	/*for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++)
-	{
-		if (FishIndex <= 4) {
-			Poptime[FishIndex] = GetRand(10);
-		}
-	}*/
-
 	countTime += 1.0f / FRAME_RATE;	//時間をカウント
 }
 
