@@ -17,6 +17,8 @@ Fish::Fish()
 		// ’¼‘O‚ÌÀ•W
 		_SaveX[FishIndex] = 0.0f;
 		_SaveY[FishIndex] = 0.0f;
+
+		fishSpeed[FISH_MAX_NUM] = 0;	//ˆÚ“®‘¬“x
 		
 		isLeft[FishIndex] = true; // ¶‚ğŒü‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©
 		isActive[FishIndex] = false; // ¶‚«‚Ä‚¢‚é‚©‚Ç‚¤‚©

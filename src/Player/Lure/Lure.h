@@ -8,8 +8,8 @@ const char LURE_PATH[256] = { "data/play/lure.png" };
 const int LURE_SIZE = 10;
 
 //ƒ‹ƒA[‚Ì‰ŠúˆÊ’u
-const int LURE_POS_X = 400.0f;
-const int LURE_POS_Y = 460.0f;
+const float LURE_POS_X = 400.0f;
+const float LURE_POS_Y = 460.0f;
 
 class Lure {
 private:
