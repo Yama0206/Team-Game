@@ -5,20 +5,27 @@
 #include "../../Fish/Fish.h"
 #include "../../Mouse/Mouse.h"
 #include "../../TimeLimit/TimeLimit.h"
-
+#include "../../Collision/Collision.h"
 #include "../../Player/Lure/Lure.h"
+#include "../../MathPlus/MathPlus.h"
+
+
+
 
 class Play
 {
 private:
 	//クラスの変数宣言
-	Player player;		//プレイヤークラス
-	Fish fish;			//魚クラス
-
-	Lure lure;
+	Player player;			//プレイヤークラス
+	Fish fish;				//魚クラス
+	Collision collision;	//当たり判定
+	Lure lure;				//ルアー
 
 	int backgroundHandle;	//背景画像ハンドル
 	int jettyHandle;		//桟橋画像ハンドル
+
+	//確認
+	bool IsHit = false;
 
 public:
 	//プレイシーンの初期化
@@ -38,4 +45,7 @@ public:
 
 	//プレイシーンの終了処理
 	void Fin();
+
+	//魚とルアーの当たり判定
+	bool FishToLureCollision();
 };

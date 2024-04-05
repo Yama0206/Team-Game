@@ -7,6 +7,10 @@ const char LURE_PATH[256] = { "data/play/lure.png" };
 // ルアー画像のサイズ
 const int LURE_SIZE = 10;
 
+//ルアー画像の縦、横サイズ
+const float LURE_HIGHT = 17.0f;
+const float LURE_WIDTH = 17.0f;
+
 //ルアーの初期位置
 const float LURE_POS_X = 400.0f;
 const float LURE_POS_Y = 460.0f;

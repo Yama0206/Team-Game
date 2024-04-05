@@ -11,8 +11,8 @@ const char CAUGHT_FISH_PATH[] = {"data/play/uokage.png"};
 const float FISH_SPEED = 5.0f;
 
 // 魚画像のサイズ
-const int FISH_X_SIZE = 100;
-const int FISH_Y_SIZE = 42;
+const float FISH_X_SIZE = 100.0;
+const float FISH_Y_SIZE = 42.0;
 
 //魚出現最大時間
 const int FISH_POP_TIME = 1;
@@ -60,6 +60,9 @@ public:
 
 	// 移動後のY座標取得用(引数:移動後の座標,配列番号)
 	void GetSaveYPos(float Y,int FishIndex) { _SaveY[FishIndex] = Y; }
+
+	//魚が生きているかどうかのフラグ取得用
+	bool GetIsActive(int FishIndex) { return isActive[FishIndex]; }
 
 	// 座標更新用(引数:配列番号)
 	void UpdatePos();
