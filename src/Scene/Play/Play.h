@@ -24,8 +24,14 @@ private:
 	int backgroundHandle;	//背景画像ハンドル
 	int jettyHandle;		//桟橋画像ハンドル
 
-	//確認
-	bool IsHit = false;
+	//魚とルアーが当たったかどうかの確認フラグ
+	bool IsFishToLureHit;
+
+
+
+	//確認用変数
+	float num = 0;
+	char moji[256] = "x";
 
 public:
 	//プレイシーンの初期化
@@ -48,4 +54,7 @@ public:
 
 	//魚とルアーの当たり判定
 	bool FishToLureCollision();
+
+	//魚とルアーが当たった時
+	void FishToLureHit();
 };

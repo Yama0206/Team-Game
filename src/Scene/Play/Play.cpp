@@ -9,9 +9,12 @@ TimeLimit timeLimit;	//時間制限
 //プレイシーンの初期化
 void Play::Init()
 {
-	player.Init();		//プレイヤーの初期化
-	fish.Init();		//フィッシュの初期化
-	lure.Init();		//ルアーの初期化
+	
+	IsFishToLureHit = false;		//魚とルアーが当たったかどうかの確認フラグの初期化
+
+	player.Init();					//プレイヤーの初期化
+	fish.Init();					//フィッシュの初期化
+	lure.Init();					//ルアーの初期化
 
 	//制限時間の初期化
 	timeLimit.Init();
@@ -46,12 +49,17 @@ void Play::Step()
 {
 	player.Step();			//プレイヤーの通常処理
 	fish.Step();			//フィッシュの通常処理
+	lure.Step();			//ルアーの通常処理
 
-	IsHit = FishToLureCollision();
+	//魚とルアーが当たったかどうかを確認するフラグに代入
+	IsFishToLureHit = FishToLureCollision();
+
+	//確認
+	FishToLureHit();
 
 	//制限時間の通常処理
 	timeLimit.Step();
-	lure.Step();
+	
 }
 
 //プレイヤーシーンの描画処理
@@ -69,8 +77,8 @@ void Play::Draw()
 	player.Draw();		//プレイヤー画像の描画
 
 	//確認
-	if (IsHit)
-		DrawFormatString(100, 100, GetColor(255, 0, 0), "atari");
+	if (IsFishToLureHit)
+		DrawFormatString(100, 100, GetColor(255, 0, 0), "%f", num);
 }
 
 //プレイヤーシーンの終了処理
@@ -102,4 +110,16 @@ bool Play::FishToLureCollision()
 	}
 
 	return false;
+}
+
+//魚とルアーが当たった時
+void Play::FishToLureHit()
+{
+	if (IsFishToLureHit)
+	{
+		for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
+			fish.SetHitUpdatePosX(GetDirection(lure.GetXPos(), lure.GetYPos(), fish.GetXPos(FishIndex), fish.GetYPos(FishIndex), 'x', 1), FishIndex);
+			fish.SetHitUpdatePosX(GetDirection(lure.GetXPos(), lure.GetYPos(), fish.GetXPos(FishIndex), fish.GetYPos(FishIndex), 'x', 1), FishIndex);
+		}
+	}
 }

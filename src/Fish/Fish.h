@@ -61,6 +61,10 @@ public:
 	// 移動後のY座標取得用(引数:移動後の座標,配列番号)
 	void GetSaveYPos(float Y,int FishIndex) { _SaveY[FishIndex] = Y; }
 
+	//ルアーに当たった後の座標を設定
+	void SetHitUpdatePosX(float X, int FishIndex) { _X[FishIndex] -= X; }
+	void SetHitUpdatePosY(float Y, int FishIndex) { _Y[FishIndex] -= Y; }
+
 	//魚が生きているかどうかのフラグ取得用
 	bool GetIsActive(int FishIndex) { return isActive[FishIndex]; }
 
