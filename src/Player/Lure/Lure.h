@@ -58,7 +58,6 @@ private:
 
 	int fade; //透明度
 	int fishingpower; // 竿を引く力
-
 public:
 
 	Lure(); // コンストラクタ

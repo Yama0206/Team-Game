@@ -39,6 +39,7 @@ private:
 	bool isActive[FISH_MAX_NUM];							 //	生きているかどうか
 	bool isCaught[FISH_MAX_NUM];							 // かかっているかどうか
 
+	int CaughtNum; // 何匹釣れているか
 public:
 
 	Fish(); // コンストラクタ
@@ -71,8 +72,8 @@ public:
 	// 座標更新用(引数:配列番号)
 	void UpdatePos();
 	 
-	// さかながかかっている状態にする(引数:配列番号)
-	void isCaughtSetTrue(int FishIndex);
+	// isCaught変更用(引数:配列番号,変更先)
+	void SetisCaught(int FishIndex, bool _isCaught);
 
 	// isCaught取得用関数
 	bool GetisCaught(int FishIndex) { return isCaught[FishIndex]; }
@@ -83,8 +84,8 @@ public:
 	// 画像ロード
 	void Load();
 
-	// 通常処理
-	void Step();
+	// 通常処理(引数:ルアーの座標)
+	void Step(float lureX, float lureY);
 
 	// 画像描画
 	void Draw();
@@ -100,4 +101,7 @@ public:
 
 	//魚出現
 	void Pop();
+
+	//魚かかったとき
+	void Caught(float lureX, float lureY);
 };

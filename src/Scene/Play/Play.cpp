@@ -48,7 +48,7 @@ void Play::Load()
 void Play::Step()
 {
 	player.Step();			//プレイヤーの通常処理
-	fish.Step();			//フィッシュの通常処理
+	fish.Step(lure.GetXPos(),lure.GetYPos());			//フィッシュの通常処理
 	lure.Step();			//ルアーの通常処理
 
 	//魚とルアーが当たったかどうかを確認するフラグに代入
@@ -115,7 +115,7 @@ bool Play::FishToLureCollision()
 			if (GetDistance(lure.GetXPos(), lure.GetYPos(), fish.GetXPos(FishIndex), fish.GetYPos(FishIndex)) < 70)
 			{
 				// どの魚があたったかを同時にとる
-				fish.isCaughtSetTrue(FishIndex);
+				fish.SetisCaught(FishIndex, true);
 				lure.SetisCaught(true);
 
 				return true;

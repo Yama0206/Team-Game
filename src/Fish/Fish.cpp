@@ -1,6 +1,7 @@
 #include "Fish.h"
 #include "../Scene/Scene.h"
 #include "../FrameRate/FrameRate.h"
+#include "../Player/Lure/Lure.h"
 
 #include "DxLib.h"
 
@@ -30,6 +31,8 @@ Fish::Fish()
 	//魚が出てくるまでの時間
 	Poptime = 0;
 	countTime = 0;
+
+	CaughtNum = 0; // 何匹釣れているか
 }
 
 // 座標更新用
@@ -42,10 +45,10 @@ void Fish::UpdatePos()
 	}
 }
 
-// さかながかかっている状態にする(引数:配列番号)
-void Fish::isCaughtSetTrue(int FishIndex)
+// isCaught変更用(引数:配列番号,変更先)
+void Fish::SetisCaught(int FishIndex, bool _isCaught)
 {
-	isCaught[FishIndex] = true; // かかっているかどうか
+	isCaught[FishIndex] = _isCaught; // かかっているかどうか
 }
 
 // 初期化
@@ -79,6 +82,8 @@ void Fish::Init()
 	//魚が出てくるまでの時間
 	Poptime = 0;
 	countTime = 0;
+
+	CaughtNum = 0; // 何匹釣れているか
 }
 
 // 画像ロード
@@ -91,14 +96,17 @@ void Fish::Load()
 	}
 }
 
-// 通常処理
-void Fish::Step()
+// 通常処理(引数:ルアーの座標)
+void Fish::Step(float lureX,float lureY)
 {
 	//移動処理
 	Move();
 
 	//出現処理
 	Pop();
+
+	//魚かかったとき
+	Caught(lureX, lureY);
 
 	//座標更新処理
 	//UpdatePos();
@@ -133,6 +141,9 @@ void Fish::Draw()
 
 	//表示を元に戻す
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+	// 釣れた数の表示
+	DrawFormatString(600, 600 - 48, GetColor(255, 0, 0), "釣れた数:%d", CaughtNum);
 }
 
 // 終了処理
@@ -244,6 +255,26 @@ void Fish::Pop()
 				countTime = 0;
 
 				break;
+			}
+		}
+	}
+}
+
+//魚かかったとき(引数:ルアーの座標)
+void Fish::Caught(float lureX, float lureY)
+{
+	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
+		if (isCaught[FishIndex]) {
+			// 魚をルアーの位置まで移動
+			_X[FishIndex] = lureX;
+			_Y[FishIndex] = lureY;
+
+			if (_X[FishIndex] == LURE_POS_X && _Y[FishIndex] == LURE_POS_Y) {
+				// フラグを初期化
+				isCaught[FishIndex] = false;
+				isActive[FishIndex] = false;
+
+				CaughtNum++; // 釣れている数を加算
 			}
 		}
 	}
