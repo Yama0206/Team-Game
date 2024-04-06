@@ -2,7 +2,11 @@
 #include "../../Mouse/Mouse.h"
 
 // 浮きの画像パス
-const char LURE_PATH[256] = { "data/play/lure.png" };
+const char LURE_PATH[] = { "data/play/lure.png" };
+// ゲージの画像パス
+const char GAUGE_PATH[] = { "data/play/fishingpowergauge.png" };
+// バーの画像パス
+const char BAR_PATH[] = { "data/play/fishingpowerbar.png" };
 
 // ルアー画像のサイズ
 const int LURE_SIZE = 10;
@@ -15,9 +19,23 @@ const float LURE_WIDTH = 17.0f;
 const float LURE_POS_X = 400.0f;
 const float LURE_POS_Y = 460.0f;
 
-// 釣る力の最大値
-const int MAX_FISHING_POWER = 500;
+// ゲージの描画位置
+const int GAUGE_POS_X = 400;
+const int GAUGE_POS_Y = 30;
 
+// ゲージの画像サイズ
+const int GAUGE_SIZE_X = 300;
+
+// 釣る力の最大値
+const int MAX_FISHING_POWER = 300;
+
+enum LURE_IMAGE_TYPE {
+	LURE_IMAGE_TYPE_LURE=0,
+	LURE_IMAGE_TYPE_GAUGE,
+	LURE_IMAGE_TYPE_BAR,
+
+	LURE_IMAGE_TYPE_NUM,
+};
 class Lure {
 private:
 	Mouse LureMouse;
@@ -27,7 +45,7 @@ private:
 		LURE_RIGHT,
 	};
 
-	int handle; // ルアー画像ハンドル
+	int handle[LURE_IMAGE_TYPE_NUM]; // ルアー画像ハンドル
 	float _X, _Y; // 現在の座標
 	float _SaveX, _SaveY; // 移動後の座標
 
@@ -36,6 +54,7 @@ private:
 
 	bool isUse;	//ルアーを投げたら
 	bool isThrow; // ルアーを投げているか
+	bool isCaught; // かかっているかどうか
 
 	int fade; //透明度
 	int fishingpower; // 竿を引く力
@@ -85,6 +104,12 @@ public:
 	// 終了処理
 	void Fin();
 	
-	// 釣り処理(引数:配列番号)
-	void Fishing(int FishIndex);
+	// 釣り処理
+	void Fishing();
+
+	// isCaught変更用
+	void SetisCaught(bool _isCaught) { isCaught = _isCaught; }
+
+	// isCaught取得用
+	bool GetisCaught() { return isCaught; }
 };

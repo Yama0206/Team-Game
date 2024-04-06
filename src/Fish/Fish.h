@@ -74,6 +74,9 @@ public:
 	// ‚³‚©‚È‚ª‚©‚©‚Á‚Ä‚¢‚éó‘Ô‚É‚·‚é(ˆø”:”z—ñ”Ô†)
 	void isCaughtSetTrue(int FishIndex);
 
+	// isCaughtæ“¾—pŠÖ”
+	bool GetisCaught(int FishIndex) { return isCaught[FishIndex]; }
+
 	// ‰Šú‰»
 	void Init();
 

@@ -41,7 +41,7 @@ void Play::Load()
 	//プレイヤー関連
 	player.Load();									//プレイヤー画像の読み込み
 	fish.Load();									//フィッシュの画像の読み込み
-	lure.Load();
+	lure.Load();									//ルアー画像の読み込み
 }
 
 //プレイヤーシーンの通常処理
@@ -79,6 +79,12 @@ void Play::Draw()
 	//確認
 	if (IsFishToLureHit)
 		DrawFormatString(100, 100, GetColor(255, 0, 0), "%f", num);
+
+	//for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
+	//	if (fish.GetisCaught(FishIndex))
+	//		DrawFormatString(100, 100, GetColor(255, 0, 0), "%f", num);
+	//}
+
 }
 
 //プレイヤーシーンの終了処理
@@ -99,11 +105,19 @@ bool Play::FishToLureCollision()
 {
 	//魚の数分for分を回す
 	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
+		// 今あたっているなら飛ばす
+		if (lure.GetisCaught())
+			continue;
+
 		//魚が生きているかどうか
 		if (fish.GetIsActive(FishIndex)) {
 			//魚とルアーの当たり判定
 			if (GetDistance(lure.GetXPos(), lure.GetYPos(), fish.GetXPos(FishIndex), fish.GetYPos(FishIndex)) < 70)
 			{
+				// どの魚があたったかを同時にとる
+				fish.isCaughtSetTrue(FishIndex);
+				lure.SetisCaught(true);
+
 				return true;
 			}
 		}

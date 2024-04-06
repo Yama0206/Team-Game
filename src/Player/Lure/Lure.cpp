@@ -8,7 +8,10 @@
 Lure::Lure()
 {
 	// ルアー画像ハンドル
-	handle = -1;
+	for (int i = 0; i < LURE_IMAGE_TYPE_NUM; i++) {
+		handle[i] = -1;
+	}
+
 	// 現在の座標
 	_X = 0.0f;
 	_Y = 0.0f;
@@ -25,6 +28,8 @@ Lure::Lure()
 	isThrow = false;
 	// ルアーが画面の左半分にあるか
 	isLureLeft = false;
+	// かかっているかどうか
+	isCaught = false;
 
 	fade = -1; //透明度
 	fishingpower = 0; // 竿を引く力
@@ -49,6 +54,8 @@ void Lure::Init()
 	isUse = false;
 	// ルアーを投げているか
 	isThrow = false;
+	// かかっているかどうか
+	isCaught = false;
 
 	// 現在の座標
 	_X = LURE_POS_X;
@@ -72,7 +79,10 @@ void Lure::Init()
 void Lure::Load()
 {
 	// ルアーの画像ロード
-	handle = LoadGraph(LURE_PATH);
+	handle[LURE_IMAGE_TYPE_LURE] = LoadGraph(LURE_PATH);
+	handle[LURE_IMAGE_TYPE_GAUGE] = LoadGraph(GAUGE_PATH);
+	handle[LURE_IMAGE_TYPE_BAR] = LoadGraph(BAR_PATH);
+
 }
 
 // マウス処理
@@ -117,53 +127,55 @@ void Lure::Mouse()
 // 移動処理
 void Lure::Move()
 {
-	// ルアーを投げたなら
-	if (isThrow) {
-		// ルアーをクリックしたところまでゆっくり移動させる
-		_X += GetDirection(_SaveX, _SaveY, _X, _Y, 'x', 10);
-		_Y += GetDirection(_SaveX, _SaveY, _X, _Y, 'y', 10);
+	if (!isCaught) {
+		// ルアーを投げたなら
+		if (isThrow) {
+			// ルアーをクリックしたところまでゆっくり移動させる
+			_X += GetDirection(_SaveX, _SaveY, _X, _Y, 'x', 10);
+			_Y += GetDirection(_SaveX, _SaveY, _X, _Y, 'y', 10);
 
-		// クリックしたところまで動いたら止まる
-		if ((isLureLeft && _X <= _SaveX) ||
-			(!isLureLeft && _X >= _SaveX)) {
-			_X = _SaveX; // クリックしたところまで動いたら止まる
+			// クリックしたところまで動いたら止まる
+			if ((isLureLeft && _X <= _SaveX) ||
+				(!isLureLeft && _X >= _SaveX)) {
+				_X = _SaveX; // クリックしたところまで動いたら止まる
+			}
+
+			if (_Y < _SaveY) {
+				_Y = _SaveY; // クリックしたところまで動いたら止まる
+			}
+
+			// クリックしたところまで移動したら
+			if (_X == _SaveX && _Y == _SaveY) {
+				// 投げていない
+				isThrow = false;
+
+				// 使用中にする
+				isUse = true;
+			}
 		}
 
-		if (_Y < _SaveY) {
-			_Y = _SaveY; // クリックしたところまで動いたら止まる
-		}
-
-		// クリックしたところまで移動したら
-		if (_X == _SaveX && _Y == _SaveY) {
-			// 投げていない
-			isThrow = false;
-
-			// 使用中にする
-			isUse = true;
-		}
-	}
-
-	//ルアーを投げれたら
-	if (isUse)
-	{
-		//左クリックが押し続けられていたら
-		if (Input::Mouse::Keep(MOUSE_INPUT_LEFT))
+		//ルアーを投げれたら
+		if (isUse)
 		{
-			//初期値に向かって進行
-			_X += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'x', 3);
-			_Y += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'y', 3);
-
-			//初期値の範囲、20以内に入ったら
-			if (GetDistance(LURE_POS_X, LURE_POS_Y, _X, _Y) <= 20)
+			//左クリックが押し続けられていたら
+			if (Input::Mouse::Keep(MOUSE_INPUT_LEFT))
 			{
-				//初期値を代入
-				_X = LURE_POS_X;
-				_Y = LURE_POS_Y;
+				//初期値に向かって進行
+				_X += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'x', 3);
+				_Y += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'y', 3);
 
-				//使用フラグを折る
-				isUse = false;
-				
-				//isActive = false;
+				//初期値の範囲、20以内に入ったら
+				if (GetDistance(LURE_POS_X, LURE_POS_Y, _X, _Y) <= 20)
+				{
+					//初期値を代入
+					_X = LURE_POS_X;
+					_Y = LURE_POS_Y;
+
+					//使用フラグを折る
+					isUse = false;
+
+					//isActive = false;
+				}
 			}
 		}
 	}
@@ -176,6 +188,8 @@ void Lure::Step()
 	Mouse();
 	//巻き取り
 	Move();
+	// 釣り処理
+	Fishing();
 }
 
 // 画像描画
@@ -189,57 +203,72 @@ void Lure::Draw()
 
 	//透明度変更
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fade);
-	DrawRotaGraph((int)_X, (int)_Y, 1.0f, 0.0f, handle, true, false);
+	DrawRotaGraph((int)_X, (int)_Y, 1.0f, 0.0f, handle[LURE_IMAGE_TYPE_LURE], true, false);
 	//表示を元に戻す
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
-		//DrawRotaGraph(500, 500, 1.0f, 0.0f, handle, true, false);
+		//DrawRotaGraph(500, 500, 1.0f, 0.0f, handle[LURE_IMAGE_TYPE_LURE], true, false);
 	//}
 	
 	//釣り糸
 	DrawLine((int)_X, (int)_Y, (int)(LURE_POS_X - 2), (int)(LURE_POS_Y - 5), GetColor(255, 255, 255));
+
+	if (isCaught) {
+		DrawRotaGraph(GAUGE_POS_X, GAUGE_POS_Y, 1.0f, 0.0f, handle[LURE_IMAGE_TYPE_GAUGE], true, false);
+		DrawRotaGraph(GAUGE_POS_X - GAUGE_SIZE_X / 2 + fishingpower, GAUGE_POS_Y, 1.0f, 0.0f, handle[LURE_IMAGE_TYPE_BAR], true, false);
+	}
 }
 
 // 終了処理
 void Lure::Fin()
 {
 	// ルアーの画像削除
-	DeleteGraph(handle);
+	for (int i = 0; i < LURE_IMAGE_TYPE_NUM; i++) {
+		DeleteGraph(handle[i]);
+	}
 }
 
-// 釣り処理(引数:配列番号)
-void Lure::Fishing(int FishIndex)
+// 釣り処理
+void Lure::Fishing()
 {
-	if (Input::Mouse::Keep(MOUSE_INPUT_LEFT)) {
-		fishingpower++; // 左クリックが押されている間powerが高くなる
-	}
-	else {
-		fishingpower--; // 押されていないと減っていく
-	}
-	
-	if (fishingpower > MAX_FISHING_POWER) {
-		fishingpower = MAX_FISHING_POWER;
-	}
-	else if (fishingpower < 0) {
-		fishingpower = 0;
-	}
+	if (isCaught) {
+		if (Input::Mouse::Keep(MOUSE_INPUT_LEFT)) {
+			fishingpower += 3; // 左クリックが押されている間powerが高くなる
+		}
+		else {
+			fishingpower -= 3; // 押されていないと減っていく
+		}
 
-	// fishingpowerが中央の範囲なら
-	if (fishingpower >= 150 && fishingpower <= MAX_FISHING_POWER - 150) {
-		//初期値に向かって進行
-		_X += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'x', 2);
-		_Y += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'y', 2);
-	}
+		if (fishingpower > MAX_FISHING_POWER) {
+			fishingpower = MAX_FISHING_POWER;
+		}
+		else if (fishingpower < 0) {
+			fishingpower = 0;
+		}
 
-	//初期値の範囲、10以内に入ったら
-	if (GetDistance(LURE_POS_X, LURE_POS_Y, _X, _Y) <= 10)
-	{
-		//初期値を代入
-		_X = LURE_POS_X;
-		_Y = LURE_POS_Y;
+		// fishingpowerが中央の範囲なら
+		// ※難易度要調整
+		if (fishingpower >= 75 && fishingpower <= MAX_FISHING_POWER - 75) {
+			//初期値に向かって進行
+			_X += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'x', 1);
+			_Y += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'y', 1);
+		}
 
-		//使用フラグを折る
-		isUse = false;
+		//初期値の範囲、10以内に入ったら
+		if (GetDistance(LURE_POS_X, LURE_POS_Y, _X, _Y) <= 10)
+		{
+			//初期値を代入
+			_X = LURE_POS_X;
+			_Y = LURE_POS_Y;
 
+			//使用フラグを折る
+			isUse = false;
+
+			// fishingpowerを初期化
+			fishingpower = 0;
+
+			//かかっていないにする
+			isCaught = false;
+		}
 	}
 }
