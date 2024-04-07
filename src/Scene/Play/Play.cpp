@@ -103,22 +103,25 @@ void Play::Fin()
 //魚とルアーの当たり判定
 bool Play::FishToLureCollision()
 {
-	//魚の数分for分を回す
-	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
-		// 今あたっているなら飛ばす
-		if (lure.GetisCaught())
-			continue;
+	if (lure.GetisUse())
+	{
+		//魚の数分for分を回す
+		for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
+			// 今あたっているなら飛ばす
+			if (lure.GetisCaught())
+				continue;
 
-		//魚が生きているかどうか
-		if (fish.GetIsActive(FishIndex)) {
-			//魚とルアーの当たり判定
-			if (GetDistance(lure.GetXPos(), lure.GetYPos(), fish.GetXPos(FishIndex), fish.GetYPos(FishIndex)) < 70)
-			{
-				// どの魚があたったかを同時にとる
-				fish.SetisCaught(FishIndex, true);
-				lure.SetisCaught(true);
+			//魚が生きているかどうか
+			if (fish.GetIsActive(FishIndex)) {
+				//魚とルアーの当たり判定
+				if (GetDistance(lure.GetXPos(), lure.GetYPos(), fish.GetXPos(FishIndex), fish.GetYPos(FishIndex)) < 70)
+				{
+					// どの魚があたったかを同時にとる
+					fish.SetisCaught(FishIndex, true);
+					lure.SetisCaught(true);
 
-				return true;
+					return true;
+				}
 			}
 		}
 	}

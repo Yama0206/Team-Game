@@ -34,6 +34,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	g_CurrentSceneID = SCENE_ID_INIT_TITLE;		//シーンID
 
 	//シーンクラス宣言
+	Title title;
 	Play play;				//プレイシーン
 
 	//入力制御初期化
@@ -70,7 +71,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			case SCENE_ID_INIT_TITLE:
 
 				//初期化
-				TitleInit();
+				title.Init();
 
 				break;
 
@@ -78,10 +79,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			case SCENE_ID_LOOP_TITLE:
 
 				//通常処理
-				TitleStep();
+				title.Step();
 
 				//描画
-				TitleDraw();
+				title.Draw();
 
 				break;
 
@@ -89,7 +90,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			case SCENE_ID_FIN_TITLE:
 
 				//終了処理
-				TitleFin();
+				title.Fin();
 
 				break;
 

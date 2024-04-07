@@ -111,4 +111,6 @@ public:
 
 	// isCaughtæ“¾—p
 	bool GetisCaught() { return isCaught; }
+
+	bool GetisUse() { return isUse; }
 };
