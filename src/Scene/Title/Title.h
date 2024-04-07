@@ -1,52 +1,51 @@
 #pragma once
 
+//‰æ‘œ‚Ìí—Ş
 enum TITLE_IMAGE_NUM
 {
-	TITLE_SKY,
-	TITLE_SEA,
-	TITLE_JETTY,
-	TITLE_CLOUD1,
-	TITLE_CLOUD2,
-	TITLE_CLOUD3,
-	TITLE_CLOUD4,
-	TITLE_TITLE,
-	TITLE_START,
+	TITLE_SKY,	//‹ó
+	TITLE_SEA,	//ŠC
+	TITLE_JETTY,	//V‹´
+	TITLE_CLOUD1,	//‰_1
+	TITLE_CLOUD2,	//‰_2
+	TITLE_CLOUD3,	//‰_3
+	TITLE_CLOUD4,	//‰_4
+	TITLE_TITLE,	//ƒ^ƒCƒgƒ‹
+	TITLE_START,	//“ü—Í‘Ò‚¿
 
-	TITLE_IMAGE_MAX_NUM,
+	TITLE_IMAGE_MAX_NUM,	//‰æ‘œ”
 };
 
 //‰æ‘œƒpƒX
 const char TITLE_IMAGE_PATH[TITLE_IMAGE_MAX_NUM][255] =
 {
-	"data/title/sky.png",
-	"data/title/sea.png",
-	"data/title/jetty.png",
-	"data/title/cloud1.png",
-	"data/title/cloud2.png",
-	"data/title/cloud3.png",
-	"data/title/cloud4.png",
-	"data/title/title.png",
-	"data/title/start.png",
+	"data/title/sky.png",	//‹ó
+	"data/title/sea.png",	//ŠC
+	"data/title/jetty.png",	//V‹´
+	"data/title/cloud1.png",	//‰_1
+	"data/title/cloud2.png",	//‰_2
+	"data/title/cloud3.png",	//‰_3
+	"data/title/cloud4.png",	//‰_4
+	"data/title/title.png",	//ƒ^ƒCƒgƒ‹
+	"data/title/start.png",	//“ü—Í‘Ò‚¿
 };
 
 class Title
 {
 private:
-	int imageHandle[TITLE_IMAGE_MAX_NUM];
+	int imageHandle[TITLE_IMAGE_MAX_NUM];	//‰æ‘œƒnƒ“ƒhƒ‹
 
-	float seaY;
-	float jettyY;
-	float cloudX[4][2];
-	float cloudY;
-	float titleY;
+	float seaY;	//ŠC‚x
+	float jettyY;	//V‹´‚x
+	float cloudX[4][2];	//‰_‚w
+	float cloudY;	//‰_‚w
+	float titleY;	//ƒ^ƒCƒgƒ‹‚x
 
-	int fade[2];
+	int fade[2];	//“§–¾“xFƒ^ƒCƒgƒ‹ “ü—Í‘Ò‚¿
 
-	bool lighting;
+	bool lighting;	//“ü—Í‘Ò‚¿‚Ì“_–Å
 
-	int progress;
-
-	float countTime;
+	int progress;	//is“x
 
 public:
 

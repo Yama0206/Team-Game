@@ -15,6 +15,7 @@ void Title::Init()
 		imageHandle[i] = LoadGraph(TITLE_IMAGE_PATH[i]);
 	}
 
+	//座標の設定
 	seaY = 200;
 	jettyY = 200;
 
@@ -27,11 +28,13 @@ void Title::Init()
 	}
 	cloudY = -20;
 
+	//透明度設定
 	fade[0] = 0;
 	fade[1] = 0;
 	lighting = true;
+
+	//進行度
 	progress = 0;
-	countTime = 0;
 
 	//通常処理に移行
 	g_CurrentSceneID = SCENE_ID_LOOP_TITLE;
@@ -42,15 +45,9 @@ void Title::Step()
 {
 	switch (progress)
 	{
-	case 0:
-		countTime += 1.0f / FRAME_RATE;
+	case 0:	//画面作り
 
-			countTime = 0;
-			progress++;
-
-		break;
-
-	case 1:
+		//海
 		if (seaY <= 0)
 		{
 			seaY = 0;
@@ -60,6 +57,7 @@ void Title::Step()
 			seaY -= 1.4f;
 		}
 
+		//桟橋
 		if (jettyY <= 0)
 		{
 			jettyY = 0;
@@ -69,6 +67,7 @@ void Title::Step()
 			jettyY -= 1.2f;
 		}
 
+		//タイトル透明度
 		if (fade[0] >= 255)
 		{
 			fade[0] = 255;
@@ -78,6 +77,7 @@ void Title::Step()
 			fade[0] += 1;
 		}
 
+		//タイトル
 		if (titleY >= 0)
 		{
 			titleY = 0;
@@ -87,6 +87,7 @@ void Title::Step()
 			titleY += 0.5f;
 		}
 
+		//以上が完成していると進行
 		if (seaY == 0 && jettyY == 0 && titleY == 0 && fade[0])
 		{
 			progress++;
@@ -94,8 +95,10 @@ void Title::Step()
 
 		break;
 
-	case 2:
+	case 1:	//入力待ち
 
+		//UIの点滅
+		//現れる
 		if (lighting)
 		{
 			fade[1] += 5;
@@ -105,6 +108,7 @@ void Title::Step()
 				lighting = false;
 			}
 		}
+		//消える
 		else
 		{
 			fade[1] -= 5;
@@ -129,6 +133,20 @@ void Title::Step()
 		break;
 	}
 
+	//画面未完成時に左クリックで完成
+	if (progress != 1 && Input::Mouse::Push(MOUSE_INPUT_LEFT))
+	{
+		//座標の設定
+		seaY = 0;
+		jettyY = 0;
+		fade[0] = 255;
+		titleY = 0;
+
+		//入力待ちへ
+		progress = 1;
+	}
+
+	//雲の流れ
 	for (int i = 0; i < 2; i++)
 	{
 		cloudX[0][i] -= 0.3;
@@ -137,6 +155,7 @@ void Title::Step()
 		cloudX[3][i] -= 0.1;
 	}
 	
+	//画面外に行くと元の位置に戻す
 	for (int i = 0; i < 4; i++)
 	{
 		for (int n = 0; i < 2; i++)
@@ -153,25 +172,26 @@ void Title::Step()
 //描画
 void Title::Draw()
 {
-	DrawGraphF(0, 0, imageHandle[TITLE_SKY], true);
-	DrawGraphF(0, seaY, imageHandle[TITLE_SEA], true);
-	DrawGraphF(0, jettyY, imageHandle[TITLE_JETTY], true);
+	DrawGraphF(0, 0, imageHandle[TITLE_SKY], true);	//空
+	DrawGraphF(0, seaY, imageHandle[TITLE_SEA], true);	//海
+	DrawGraphF(0, jettyY, imageHandle[TITLE_JETTY], true);	//桟橋
 
+	//雲
 	for (int i = 0; i < 4; i++)
 	{
 		DrawGraphF(cloudX[i][0], cloudY, imageHandle[TITLE_CLOUD1 + i], true);
 		DrawGraphF(cloudX[i][1], cloudY, imageHandle[TITLE_CLOUD1 + i], true);
 	}
 
-	//
+	//fadeで透明度変更
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fade[0]);
-	DrawGraphF(0, titleY, imageHandle[TITLE_TITLE], true);
+	DrawGraphF(0, titleY, imageHandle[TITLE_TITLE], true);	//タイトル
 	//表示を元に戻す
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
-
+	//fadeで透明度変更
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fade[1]);
-	DrawGraphF(0, 0, imageHandle[TITLE_START], true);
+	DrawGraphF(0, 0, imageHandle[TITLE_START], true);	//入力待ち
 	//表示を元に戻す
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
