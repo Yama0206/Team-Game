@@ -27,7 +27,9 @@ private:
 	//魚とルアーが当たったかどうかの確認フラグ
 	bool IsFishToLureHit;
 
-
+	float caughtCountTime;
+	int fishingChanceNum;
+	
 
 	//確認用変数
 	float num = 0;
@@ -57,4 +59,5 @@ public:
 
 	//魚とルアーが当たった時
 	void FishToLureHit();
+
 };

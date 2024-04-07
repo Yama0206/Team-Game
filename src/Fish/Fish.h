@@ -39,7 +39,12 @@ private:
 	bool isActive[FISH_MAX_NUM];							 //	生きているかどうか
 	bool isCaught[FISH_MAX_NUM];							 // かかっているかどうか
 
+	float angle[FISH_MAX_NUM];	//魚の進行方向
+
 	int CaughtNum; // 何匹釣れているか
+
+	bool fishingChance;
+
 public:
 
 	Fish(); // コンストラクタ
@@ -85,7 +90,7 @@ public:
 	void Load();
 
 	// 通常処理(引数:ルアーの座標)
-	void Step(float lureX, float lureY);
+	void Step(float lureX, float lureY, bool lureIsUse, bool lureIsCaught);
 
 	// 画像描画
 	void Draw();
@@ -94,7 +99,7 @@ public:
 	void Fin();
 
 	//移動処理
-	void Move();
+	void Move(float lureX, float lureY, bool lureIsUse, bool lureIsCaught);
 
 	//出現時間管理処理
 	void SetPopTime();
@@ -104,4 +109,18 @@ public:
 
 	//魚かかったとき
 	void Caught(float lureX, float lureY);
+
+	//X座標に加算
+	void AddPosX(int index, float set) { _X[index] += set; }
+	//左右を取得
+	bool GetIsLeft(int index) { return isLeft[index]; }
+	//生存フラグを取得
+	void SetIsActive(int index, bool set) { isActive[index] = set; }
+
+	//座標を指定
+	void SetPosX(int index, float set) { _X[index] = set; }
+	void SetPosY(int index, float set) { _Y[index] = set; }
 };
+
+//hitチャンス状態フラグ
+extern bool fishChance;

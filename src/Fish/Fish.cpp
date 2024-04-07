@@ -2,6 +2,7 @@
 #include "../Scene/Scene.h"
 #include "../FrameRate/FrameRate.h"
 #include "../Player/Lure/Lure.h"
+#include "../MathPlus/MathPlus.h"
 
 #include "DxLib.h"
 
@@ -84,6 +85,8 @@ void Fish::Init()
 	countTime = 0;
 
 	CaughtNum = 0; // 何匹釣れているか
+
+	fishingChance = false;
 }
 
 // 画像ロード
@@ -97,10 +100,10 @@ void Fish::Load()
 }
 
 // 通常処理(引数:ルアーの座標)
-void Fish::Step(float lureX,float lureY)
+void Fish::Step(float lureX,float lureY, bool lureIsUse, bool lureIsCaught)
 {
 	//移動処理
-	Move();
+	Move(lureX, lureY, lureIsUse, lureIsCaught);
 
 	//出現処理
 	Pop();
@@ -127,7 +130,7 @@ void Fish::Draw()
 			if (!isCaught[FishIndex]) {
 				// かかっていないときは魚のかたち
 				DrawRotaGraph((int)_X[FishIndex], (int)_Y[FishIndex],
-					1.0f, 0.0f, handle[IMAGE_TYPE_NORMAL][FishIndex], true, isLeft[FishIndex]);
+					1.0f, angle[FishIndex], handle[IMAGE_TYPE_NORMAL][FishIndex], true, isLeft[FishIndex]);
 			}
 			else {
 				// かかったときは影
@@ -157,41 +160,72 @@ void Fish::Fin()
 }
 
 //移動処理
-void Fish::Move()
-{
-	//魚の最大数までfor分を回す
-	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
-
+void Fish::Move(float lureX,float lureY,bool lureIsUse,bool lureIsCaught)
+{	
+	fishingChance = false;
+	for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) 
+	{
+		//生存で以下
 		if (isActive[FishIndex])
 		{
-			// 魚の移動処理
-			if (isLeft[FishIndex]) {
-				_X[FishIndex] -= fishSpeed[FishIndex]; // 左を向いているとき左に動く
-			}
-			else {
-				_X[FishIndex] += fishSpeed[FishIndex]; // 右を向いているときに右に動く
-			}
-		}
+			//ルアーの一定距離に入ったらルアーを追跡==================================
+			if (GetDistance(_X[FishIndex], _Y[FishIndex], lureX, lureY) <= 100&&
+				lureIsUse&&	//ルアーを投げている
+				!lureIsCaught&&	//hitしていない
+				!fishingChance)	//まだ一匹も反応してない
+			{
+				_X[FishIndex] += GetDirection(lureX, lureY, _X[FishIndex], _Y[FishIndex], 'x', 0.5f);
+				_Y[FishIndex] += GetDirection(lureX, lureY, _X[FishIndex], _Y[FishIndex], 'y', 0.5f);
 
-		// 魚が画面外に行ったとき
-		//→
-		if (isLeft[FishIndex])
-		{
-			if (_X[FishIndex] < -(FISH_X_SIZE / 2))
+				//向きを変える
+				if (isLeft[FishIndex])
+				{
+					
+					angle[FishIndex] = GetAngle(_X[FishIndex], _Y[FishIndex], lureX, lureY);
+				}
+				else
+				{
+					angle[FishIndex] = GetAngle(lureX, lureY, _X[FishIndex], _Y[FishIndex]);
+				}
+
+				//一匹だけルアーに反応するようにする
+				fishingChance = true;
+			}
+
+			//通常移動===============================================================
+			else
 			{
-				isActive[FishIndex] = false; // 魚を殺す
+				// 魚の移動処理
+				if (isLeft[FishIndex]) {
+					_X[FishIndex] -= fishSpeed[FishIndex]; // 左を向いているとき左に動く
+					angle[FishIndex] = 0;
+				}
+				else {
+					_X[FishIndex] += fishSpeed[FishIndex]; // 右を向いているときに右に動く
+					angle[FishIndex] = 0;
+				}
+
+				// 魚が画面外に行ったとき
+				//→
+				if (isLeft[FishIndex])
+				{
+					if (_X[FishIndex] < -(FISH_X_SIZE / 2))
+					{
+						isActive[FishIndex] = false; // 魚を殺す
+					}
+				}
+				//←
+				else
+				{
+					if (_X[FishIndex] > SCREEN_SIZE_X + FISH_X_SIZE / 2)
+					{
+						isActive[FishIndex] = false; // 魚を殺す
+					}
+				}
 			}
 		}
-		//←
-		else
-		{
-			if (_X[FishIndex] > SCREEN_SIZE_X + FISH_X_SIZE / 2)
-			{
-				isActive[FishIndex] = false; // 魚を殺す
-			}
-		}
-		
 	}
+
 }
 
 //出現時間管理処理
@@ -275,6 +309,8 @@ void Fish::Caught(float lureX, float lureY)
 				isActive[FishIndex] = false;
 
 				CaughtNum++; // 釣れている数を加算
+
+				fishChance = false;
 			}
 		}
 	}

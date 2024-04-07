@@ -113,4 +113,6 @@ public:
 	bool GetisCaught() { return isCaught; }
 
 	bool GetisUse() { return isUse; }
+
+	void SetFade(int set) { fade = set; }
 };
