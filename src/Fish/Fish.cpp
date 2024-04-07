@@ -145,8 +145,10 @@ void Fish::Draw()
 	//•\¦‚ğŒ³‚É–ß‚·
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
+	SetFontSize(40);
 	// ’Ş‚ê‚½”‚Ì•\¦
-	DrawFormatString(600, 600 - 48, GetColor(255, 0, 0), "’Ş‚ê‚½”:%d", CaughtNum);
+	DrawFormatString(657, 600 - 80, GetColor(59, 45, 45), "%d", CaughtNum);
+	SetFontSize(20);
 }
 
 // I—¹ˆ—

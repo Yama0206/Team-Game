@@ -120,7 +120,12 @@ public:
 	//座標を指定
 	void SetPosX(int index, float set) { _X[index] = set; }
 	void SetPosY(int index, float set) { _Y[index] = set; }
+
+	//釣った魚の数を取得
+	int GetCaughtNum() { return CaughtNum; }
 };
 
 //hitチャンス状態フラグ
 extern bool fishChance;
+
+extern Fish fish;

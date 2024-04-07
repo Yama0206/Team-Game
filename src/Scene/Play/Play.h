@@ -17,12 +17,13 @@ class Play
 private:
 	//クラスの変数宣言
 	Player player;			//プレイヤークラス
-	Fish fish;				//魚クラス
+	
 	Collision collision;	//当たり判定
 	Lure lure;				//ルアー
 
 	int backgroundHandle;	//背景画像ハンドル
 	int jettyHandle;		//桟橋画像ハンドル
+	int scoreImageHandle;	//スコアボード画像ハンドル
 
 	//魚とルアーが当たったかどうかの確認フラグ
 	bool IsFishToLureHit;

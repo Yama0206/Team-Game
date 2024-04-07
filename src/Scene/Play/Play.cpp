@@ -4,8 +4,11 @@
 //画像パス
 const char BACKGROUND_PATH[] = { "data/play/backGround.png" };		//プレイシーンの背景画像のパス
 const char JETTY_PATH[] = { "data/play/jetty.png" };					//プレイシーンの桟橋画像のパス
+const char SCORE_BOARD_PATH[] = { "data/play/scoreBoard.png" };					//プレイシーンの桟橋画像のパス
 
 TimeLimit timeLimit;	//時間制限
+
+Fish fish;				//魚クラス
 
 bool fishChance;	//hit状態フラグ
 
@@ -44,6 +47,7 @@ void Play::Load()
 	//背景関連
 	backgroundHandle = LoadGraph(BACKGROUND_PATH);	//背景
 	jettyHandle = LoadGraph(JETTY_PATH);			//桟橋
+	scoreImageHandle = LoadGraph(SCORE_BOARD_PATH);			//スコアボード
 	
 	//プレイヤー関連
 	player.Load();									//プレイヤー画像の読み込み
@@ -75,6 +79,7 @@ void Play::Draw()
 	//背景描画
 	DrawGraph(0, 0, backgroundHandle, true);	//背景
 	DrawGraph(0, 0, jettyHandle, true);	//桟橋
+	DrawGraph(600, 500, scoreImageHandle, true);	//桟橋
 
 	//制限時間の描画
 	timeLimit.Draw();
@@ -84,8 +89,8 @@ void Play::Draw()
 	player.Draw();		//プレイヤー画像の描画
 
 	//確認
-	if (IsFishToLureHit)
-		DrawFormatString(100, 100, GetColor(255, 0, 0), "%f", num);
+	//if (IsFishToLureHit)
+		//DrawFormatString(100, 100, GetColor(255, 0, 0), "%f", num);
 
 	//for (int FishIndex = 0; FishIndex < FISH_MAX_NUM; FishIndex++) {
 	//	if (fish.GetisCaught(FishIndex))
