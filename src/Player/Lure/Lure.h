@@ -58,6 +58,10 @@ private:
 
 	int fade; //透明度
 	int fishingpower; // 竿を引く力
+
+	//波紋============================
+	float effectInterval;
+
 public:
 
 	Lure(); // コンストラクタ

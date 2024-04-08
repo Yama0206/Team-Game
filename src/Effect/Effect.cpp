@@ -36,7 +36,7 @@ const int effectImageSize[EFFECT_TYPE_NUM][2] =
 //各エフェクトのアニメ画像切り替え時間
 const float effectChageTime[EFFECT_TYPE_NUM] =
 {
-	0.1f,	//波紋
+	0.15f,	//波紋
 };
 
 //==============================================================================================

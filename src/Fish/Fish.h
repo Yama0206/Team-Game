@@ -56,6 +56,7 @@ private:
 	int scoreFade;	//得点加算の透明度
 	bool addScore;	//得点加算演出実行フラグ
 
+
 public:
 
 	Fish(); // コンストラクタ

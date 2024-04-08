@@ -3,6 +3,8 @@
 #include "../../Input/Input.h"
 #include "../../Scene/Scene.h"
 #include "../../MathPlus/MathPlus.h"
+#include "../../Effect/Effect.h"
+#include "../../FrameRate/FrameRate.h"
 
 // コンストラクタ
 Lure::Lure()
@@ -73,6 +75,10 @@ void Lure::Init()
 
 	// 竿を引く力
 	fishingpower = 0;
+
+	Effect::Init();
+	Effect::Load(EFFECT_TYPE_RIPPLE,20);
+	effectInterval = 0;
 }
 
 // 画像ロード
@@ -151,6 +157,9 @@ void Lure::Move()
 
 				// 使用中にする
 				isUse = true;
+
+				//波紋を出す
+				effectInterval = 0.5f;
 			}
 		}
 
@@ -163,6 +172,8 @@ void Lure::Move()
 				//初期値に向かって進行
 				_X += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'x', 3);
 				_Y += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'y', 3);
+
+				effectInterval += 3.0f / FRAME_RATE;
 
 				//初期値の範囲、20以内に入ったら
 				if (GetDistance(LURE_POS_X, LURE_POS_Y, _X, _Y) <= 20)
@@ -190,6 +201,18 @@ void Lure::Step()
 	Move();
 	// 釣り処理
 	Fishing();
+
+	if (isUse)
+	{
+		effectInterval += 1.0f / FRAME_RATE;
+		if (effectInterval >= 0.7f)
+		{
+			Effect::Play(EFFECT_TYPE_RIPPLE, _X, _Y);
+			effectInterval = 0.0f;
+		}
+	}
+
+	Effect::Step();
 }
 
 // 画像描画
@@ -200,6 +223,8 @@ void Lure::Draw()
 	DrawBox(30, 30, SCREEN_SIZE_X - 30, SCREEN_SIZE_Y - 145, GetColor(0, 0, 255), false);
 
 	/*if (isActive) {*/
+
+	Effect::Draw();
 
 	//透明度変更
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, fade);
@@ -252,6 +277,8 @@ void Lure::Fishing()
 			//初期値に向かって進行
 			_X += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'x', 1);
 			_Y += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'y', 1);
+
+			effectInterval += 3.0f / FRAME_RATE;
 		}
 
 		//初期値の範囲、10以内に入ったら
