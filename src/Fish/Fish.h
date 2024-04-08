@@ -7,6 +7,11 @@ const int FISH_MAX_NUM = 10;
 const char FISH_PATH[] = { "data/play/fish.png" };
 const char CAUGHT_FISH_PATH[] = {"data/play/uokage.png"};
 
+//得点加算の画像パス
+const char SCORE_IMAGE_PATH[] = { "data/play/addScore.png" };
+
+//得点加算の画像パス
+
 // 魚の速度
 const float FISH_SPEED = 5.0f;
 
@@ -44,6 +49,12 @@ private:
 	int CaughtNum; // 何匹釣れているか
 
 	bool fishingChance;
+
+	//得点============================
+	int scoreImageHandle;	//得点加算画像ハンドル
+	int scoreAddY;	//得点加算の座標(変化分だけ加算)
+	int scoreFade;	//得点加算の透明度
+	bool addScore;	//得点加算演出実行フラグ
 
 public:
 
@@ -123,6 +134,9 @@ public:
 
 	//釣った魚の数を取得
 	int GetCaughtNum() { return CaughtNum; }
+
+	//得点加算の動き
+	void ScoreAddMove();
 };
 
 //hitチャンス状態フラグ

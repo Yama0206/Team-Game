@@ -87,6 +87,15 @@ void Fish::Init()
 	CaughtNum = 0; // 何匹釣れているか
 
 	fishingChance = false;
+
+	//得点加算の画像読み込み
+	scoreImageHandle = LoadGraph(SCORE_IMAGE_PATH);
+	//得点加算の座標追加文設定
+	scoreAddY = 0;
+	//得点加算の透明度設定
+	scoreFade = 0;
+	//得点加算演出実行フラグ
+	addScore = false;
 }
 
 // 画像ロード
@@ -113,6 +122,9 @@ void Fish::Step(float lureX,float lureY, bool lureIsUse, bool lureIsCaught)
 
 	//座標更新処理
 	//UpdatePos();
+
+	//得点加算演出
+	ScoreAddMove();
 }
 
 // 画像描画
@@ -145,10 +157,18 @@ void Fish::Draw()
 	//表示を元に戻す
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
+	//文字の大きさを変更
 	SetFontSize(40);
 	// 釣れた数の表示
 	DrawFormatString(657, 600 - 80, GetColor(59, 45, 45), "%d", CaughtNum);
+	//文字の大きさを元に戻す
 	SetFontSize(20);
+
+	//透明度変更
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, scoreFade);
+	DrawRotaGraph(700, 500+ scoreAddY, 1.0f, 0.0f, scoreImageHandle, true);
+	//表示を元に戻す
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 // 終了処理
@@ -305,6 +325,7 @@ void Fish::Caught(float lureX, float lureY)
 			_X[FishIndex] = lureX;
 			_Y[FishIndex] = lureY;
 
+			//釣れた
 			if (_X[FishIndex] == LURE_POS_X && _Y[FishIndex] == LURE_POS_Y) {
 				// フラグを初期化
 				isCaught[FishIndex] = false;
@@ -313,7 +334,47 @@ void Fish::Caught(float lureX, float lureY)
 				CaughtNum++; // 釣れている数を加算
 
 				fishChance = false;
+
+				//得点加算演出==========================
+		
+				//得点加算の座標追加文設定
+				scoreAddY = 0;
+				//得点加算の透明度設定
+				scoreFade = 255;
+				//得点加算演出へ
+				addScore = true;
 			}
 		}
 	}
+}
+
+//得点加算の動き
+void Fish::ScoreAddMove()
+{
+	if (addScore)
+	{
+		if (scoreAddY < 50)
+		{
+			scoreAddY += 2;
+		}
+		else
+		{
+			scoreAddY = 50;
+		}
+
+		if (scoreFade > 0)
+		{
+			scoreFade -= 20;
+		}
+		else
+		{
+			scoreFade = 0;
+		}
+
+		if (scoreAddY == 50 && scoreFade == 0)
+		{
+			addScore = false;
+		}
+	}
+	
 }

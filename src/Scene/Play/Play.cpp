@@ -79,7 +79,7 @@ void Play::Draw()
 	//”wŒi•`‰æ
 	DrawGraph(0, 0, backgroundHandle, true);	//”wŒi
 	DrawGraph(0, 0, jettyHandle, true);	//V‹´
-	DrawGraph(600, 500, scoreImageHandle, true);	//V‹´
+	DrawGraph(600, 500, scoreImageHandle, true);	//ƒXƒRƒAƒ{[ƒh
 
 	//§ŒÀŠÔ‚Ì•`‰æ
 	timeLimit.Draw();
