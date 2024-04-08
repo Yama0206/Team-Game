@@ -1,4 +1,5 @@
 #pragma once
+#include"../Sound/Sound.h"
 
 // define
 #define	SCREEN_SIZE_X	800	// X方向の画面サイズを指定

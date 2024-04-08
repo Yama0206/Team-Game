@@ -76,9 +76,13 @@ void Lure::Init()
 	// 竿を引く力
 	fishingpower = 0;
 
+	//エフェクトの初期化
 	Effect::Init();
+	//エフェクトを指定の数読み込む
 	Effect::Load(EFFECT_TYPE_RIPPLE,20);
+	//間隔をリセット
 	effectInterval = 0;
+	seFrg = false;
 }
 
 // 画像ロード
@@ -124,6 +128,9 @@ void Lure::Mouse()
 					isLureLeft = false;
 				}
 
+				//se
+				Sound::Se::Play(SE_FISHING_ROD);
+
 				//isActive = true;
 			}
 		}
@@ -160,6 +167,9 @@ void Lure::Move()
 
 				//波紋を出す
 				effectInterval = 0.5f;
+
+				//se
+				Sound::Se::Play(SE_LURE);
 			}
 		}
 
@@ -173,6 +183,7 @@ void Lure::Move()
 				_X += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'x', 3);
 				_Y += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'y', 3);
 
+				//波紋の間隔を加速
 				effectInterval += 3.0f / FRAME_RATE;
 
 				//初期値の範囲、20以内に入ったら
@@ -185,9 +196,27 @@ void Lure::Move()
 					//使用フラグを折る
 					isUse = false;
 
+
 					//isActive = false;
 				}
 			}
+
+			//se用処理
+			//左クリックが押されたら
+			if (Input::Mouse::Keep(MOUSE_INPUT_LEFT))
+			{
+				Sound::Bgm::Play(BGM_RECOVERY);
+			}
+
+			if(Input::Mouse::Release(MOUSE_INPUT_LEFT))
+			{
+				Sound::Bgm::StopSound(BGM_RECOVERY);
+			}
+		}
+		else
+		{
+			//se
+			Sound::Bgm::StopSound(BGM_RECOVERY);
 		}
 	}
 }
@@ -202,16 +231,23 @@ void Lure::Step()
 	// 釣り処理
 	Fishing();
 
+	//以下演出
+	//ルアーが投げられていたら以下
 	if (isUse)
 	{
+		//波紋の間隔を加算
 		effectInterval += 1.0f / FRAME_RATE;
+		//指定の時間になったら
 		if (effectInterval >= 0.7f)
 		{
+			//エフェクトを出す
 			Effect::Play(EFFECT_TYPE_RIPPLE, _X, _Y);
+			//時間を初期化
 			effectInterval = 0.0f;
 		}
 	}
 
+	//エフェクトの通常処理
 	Effect::Step();
 }
 
@@ -224,6 +260,7 @@ void Lure::Draw()
 
 	/*if (isActive) {*/
 
+	//エフェクト描画
 	Effect::Draw();
 
 	//透明度変更
@@ -257,6 +294,13 @@ void Lure::Fin()
 void Lure::Fishing()
 {
 	if (isCaught) {
+		if (!seFrg)
+		{
+			seFrg = true;
+			Sound::Bgm::Play(BGM_FISHING);
+			Sound::Bgm::Play(BGM_FISH);
+		}
+
 		if (Input::Mouse::Keep(MOUSE_INPUT_LEFT)) {
 			fishingpower += 3; // 左クリックが押されている間powerが高くなる
 		}
@@ -278,6 +322,7 @@ void Lure::Fishing()
 			_X += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'x', 1);
 			_Y += GetDirection(LURE_POS_X, LURE_POS_Y, _X, _Y, 'y', 1);
 
+			//波紋間隔を加速
 			effectInterval += 3.0f / FRAME_RATE;
 		}
 
@@ -296,6 +341,29 @@ void Lure::Fishing()
 
 			//かかっていないにする
 			isCaught = false;
+
+			//se
+			Sound::Se::Play(SE_FISH_GET);
 		}
+
+		////se用処理
+		//	//左クリックが押されたら
+		//if (Input::Mouse::Keep(MOUSE_INPUT_LEFT))
+		//{
+		//	Sound::Bgm::Play(BGM_FISHING);
+		//	Sound::Bgm::Play(BGM_FISH);
+		//}
+
+		//if (Input::Mouse::Release(MOUSE_INPUT_LEFT))
+		//{
+		//	Sound::Bgm::StopSound(BGM_FISHING);
+		//	Sound::Bgm::StopSound(BGM_FISH);
+		//}
+	}
+	else
+	{
+		seFrg = false;
+		Sound::Bgm::StopSound(BGM_FISHING);
+		Sound::Bgm::StopSound(BGM_FISH);
 	}
 }

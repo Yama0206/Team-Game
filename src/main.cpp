@@ -41,6 +41,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	//入力制御初期化
 	Input::Init();
 
+	//サウンド初期化
+	Sound::Init();
+
 	//-----------------------------------------
 	//ゲームメインループ
 	while (ProcessMessage() != -1)

@@ -36,6 +36,9 @@ void Title::Init()
 	//進行度
 	progress = 0;
 
+	//bgm
+	Sound::Bgm::Play(BGM_TITLE);
+
 	//通常処理に移行
 	g_CurrentSceneID = SCENE_ID_LOOP_TITLE;
 }
@@ -122,6 +125,9 @@ void Title::Step()
 		//左クリックで以下
 		if (Input::Mouse::Push(MOUSE_INPUT_LEFT))
 		{
+			//se
+			Sound::Se::Play(SE_SYSTEM);
+
 			//終了処理へ
 			g_CurrentSceneID = SCENE_ID_FIN_TITLE;
 		}
@@ -199,6 +205,9 @@ void Title::Draw()
 //終了処理
 void Title::Fin()
 {
+	//bgm
+	Sound::Bgm::StopSound(BGM_TITLE);
+	
 	//プレイ画面へ移行
 	g_CurrentSceneID = SCENE_ID_INIT_PLAY;
 }

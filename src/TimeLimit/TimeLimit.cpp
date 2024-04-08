@@ -27,11 +27,17 @@ void TimeLimit::Step()
 		currentTime--;
 		//ƒJƒEƒ“ƒg‚ğ–ß‚·
 		timeCount = 0.0f;
+
+		if (currentTime <= 10)
+		{
+			Sound::Se::Play(SE_TIME_LIMIT);
+		}
 	}
 
 	//§ŒÀŠÔ‚ª0‚É‚È‚Á‚½‚ç
 	if (currentTime <= 0)
 	{
+		Sound::Se::Play(SE_FINISH);
 		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 	}
 }

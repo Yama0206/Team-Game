@@ -62,6 +62,9 @@ private:
 	//波紋============================
 	float effectInterval;
 
+	//SE用============================
+	bool seFrg;	//音を鳴らしたか
+
 public:
 
 	Lure(); // コンストラクタ

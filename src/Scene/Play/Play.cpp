@@ -29,6 +29,10 @@ void Play::Init()
 	fishChance = false;
 	fishingChanceNum = 0;
 
+	//bgm
+	Sound::Bgm::Play(BGM_PLAY);
+	Sound::Bgm::Play(BGM_SEA);
+
 	//プレイシーンの通常処理に遷移
 	g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
 }
@@ -88,6 +92,13 @@ void Play::Draw()
 	lure.Draw();		//ルアー画像の描画		
 	player.Draw();		//プレイヤー画像の描画
 
+	//文字の大きさを変更
+	SetFontSize(20);
+	//操作説明を書く
+	DrawFormatString(20, 465, GetColor(255, 255, 255), "クリックした位置にルアーを投げる");
+	//文字の大きさを元に戻す
+	SetFontSize(20);
+
 	//確認
 	//if (IsFishToLureHit)
 		//DrawFormatString(100, 100, GetColor(255, 0, 0), "%f", num);
@@ -108,6 +119,14 @@ void Play::Fin()
 
 	//制限時間の終了処理
 	timeLimit.Fin();
+
+	//gem
+	Sound::Bgm::StopSound(BGM_PLAY);
+	Sound::Bgm::StopSound(BGM_SEA);
+
+	Sound::Bgm::StopSound(BGM_FISH);
+	Sound::Bgm::StopSound(BGM_FISHING);
+	Sound::Bgm::StopSound(BGM_RECOVERY);
 
 	g_CurrentSceneID = SCENE_ID_INIT_RESULT;
 }
@@ -130,31 +149,40 @@ bool Play::FishToLureCollision()
 				//一定距離に入ったら以下
 				if (GetDistance(lure.GetXPos(), lure.GetYPos(), fish.GetXPos(FishIndex), fish.GetYPos(FishIndex)) < 50)
 				{
-					//３０％の確率でhit
-					if (GetRand(100) < 30&&!fishChance)
+					if (!fishChance)
 					{
-						//魚を影にする
-						fish.SetisCaught(FishIndex, true);
-						
-						//チャンスに移行
-						fishChance = true;
-						//ルアーの透明度を変える
-						lure.SetFade(255 * 0.5);
-
-						//hitした魚を記録
-						fishingChanceNum = FishIndex;
-					}
-					//hitしなかった
-					else
-					{
-						//魚を引かせる
-						if (fish.GetIsLeft(FishIndex))
+						//３０％の確率でhit
+						if (GetRand(100) < 30)
 						{
-							fish.AddPosX(FishIndex, -50);
+							//se
+							Sound::Se::Play(SE_LURE);
+
+							//魚を影にする
+							fish.SetisCaught(FishIndex, true);
+
+							//チャンスに移行
+							fishChance = true;
+							//ルアーの透明度を変える
+							lure.SetFade(255 * 0.5);
+
+							//hitした魚を記録
+							fishingChanceNum = FishIndex;
 						}
+						//hitしなかった
 						else
 						{
-							fish.AddPosX(FishIndex, 50);
+							//se
+							Sound::Se::Play(SE_HIT);
+
+							//魚を引かせる
+							if (fish.GetIsLeft(FishIndex))
+							{
+								fish.AddPosX(FishIndex, -50);
+							}
+							else
+							{
+								fish.AddPosX(FishIndex, 50);
+							}
 						}
 					}
 				}
